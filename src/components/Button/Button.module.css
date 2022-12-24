@@ -1,0 +1,12 @@
+.button {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  vertical-align: middle;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s all ease-in;
+  opacity: 0.2;
+}

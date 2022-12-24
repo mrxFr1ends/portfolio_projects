@@ -1,0 +1,29 @@
+.checkbox {
+  width: 24px;
+  height: 24px;
+}
+
+.checkbox__input {
+  display: none;
+}
+
+.checkbox__icon {
+  vertical-align: middle;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s all ease-in;
+  border: 2px solid black;
+  opacity: 0.2;
+}
+
+.checkbox__icon:hover {
+  opacity: 0.4;
+}
+
+.checkbox__input:checked + .checkbox__icon {
+  background: #00d478;
+  opacity: 0.6;
+}

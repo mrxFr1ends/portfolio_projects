@@ -1,82 +1,64 @@
 import { useState } from "react";
 import "./App.css";
-
-const TodoListItem = ({item, onComplete, onRemove}) => {
-  return (
-    <div>
-      <button 
-        className="todoBtnComplete"
-        onClick={() => onComplete(item.id)}>
-          Active
-      </button>
-      <div className={"todoText" + (item.isComplete ? ' todoComplete' : '')}>{item.text}</div>
-      <button 
-        className="todoBtnRemove"
-        onClick={() => onRemove(item.id)}>
-          X
-      </button>
-    </div>
-  );
-}
+import TextField from "./components/TextField/TextField";
+import TodoList from "./components/TodoList/TodoList.jsx";
+import ModalWindow from './components/ModalWindow/ModalWindow';
 
 function App() {
   const [todos, setTodos] = useState([
-    {id: 0, isComplete: false, text: "Learn Rect 1"},
-    {id: 1, isComplete: true, text: "Learn Rect 2"},
+    { id: 0, isComplete: false, text: "Learn Rect 1" },
+    { id: 1, isComplete: true, text: "Learn Rect 2" },
+    { id: 2, isComplete: false, text: "ergerg" },
+    { id: 3, isComplete: true, text: "eergerg4" },
+    { id: 4, isComplete: false, text: "Learn Rect 5" },
+    { id: 5, isComplete: true, text: "Leagergergct 6" },
+    { id: 6, isComplete: false, text: "Learn Rect 7" },
+    { id: 7, isComplete: true, text: "Lear124fet 8" },
+    { id: 8, isComplete: false, text: "Lea124124 9" },
+    { id: 9, isComplete: true, text: "Lea123110" },
   ]);
-  const [todoValue, setTodoValue] = useState('');
+  const [todoValue, setTodoValue] = useState("");
 
-  const onComplete = (id) => {
-    setTodos(todos.map(item => {
-      if (item.id === id)
-        return {...item, isComplete: !item.isComplete}
-      return item
-    }))
-  }
+  const completeTodo = (id) => {
+    setTodos(
+      todos.map((item) => {
+        if (item.id === id) return { ...item, isComplete: !item.isComplete };
+        return item;
+      })
+    );
+  };
 
-  const onRemove = (id) => {
-    setTodos(todos.filter(item => item.id !== id));
-  }
+  const removeTodo = (id) => {
+    setTodos(todos.filter((item) => item.id !== id));
+  };
 
   const addTodo = () => {
-    if (todoValue === '' )
-      return
+    if (todoValue === "") return;
     const newTodo = {
       id: Date.now(),
       isComplete: false,
-      text: todoValue
+      text: todoValue,
     };
-    setTodos([...todos, newTodo]);
-    setTodoValue('');
-  }
+    setTodos([newTodo, ...todos]);
+    setTodoValue("");
+  };
+
+  //todo: Сделать доп инфу в айтеме, сделать кнопку просмотра деталей и
+  //todo: edit. Добавить цвета по важности, или например сортировку по важности
 
   return (
     <div className="container">
-      <div className="text-field">
-        <input
-          className="text-field__input"
-          type="text"
-          id="todo"
-          name="todo"
-          placeholder=" "
-          value={todoValue}
-          onChange={e => setTodoValue(e.target.value)}
-          onKeyUp={e => e.key === 'Enter' && addTodo()}
-        />
-        <label className="text-field__label" htmlFor="todo">
-          Todo
-        </label>
-      </div>
-      <ul className="todos_list">
-        {todos.map(item =>
-          <TodoListItem 
-            item={item}
-            onComplete={onComplete}
-            onRemove={onRemove}
-            key={item.id}
-          />
-        )}
-      </ul>
+      <ModalWindow visible={false}>
+
+      </ModalWindow>
+      <TextField 
+        name="todo" 
+        value={todoValue} 
+        title="Todo" 
+        onChange={(e) => setTodoValue(e.target.value)} 
+        onKeyUp={(e) => e.key === "Enter" && addTodo()}
+      />
+      <TodoList todos={todos} onComplete={completeTodo} onRemove={removeTodo} />
     </div>
   );
 }

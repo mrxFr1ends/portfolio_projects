@@ -1,0 +1,66 @@
+.text_field {
+  position: relative;
+  width: 100%;
+}
+
+.text_field__label {
+  display: block;
+  margin-bottom: 0.25rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  padding: 1rem 0.75rem;
+  pointer-events: none;
+  border: 1px solid transparent;
+  transform-origin: 0 0;
+  transition: color 0.15s ease-in-out, transform 0.15s ease-in-out;
+}
+
+.text_field__input {
+  display: block;
+  width: 100%;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #212529;
+  background-clip: padding-box;
+  background-color: transparent;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  border-bottom: 1px solid #bdbdbd;
+  height: calc(3.5rem + 2px);
+  line-height: 1.25;
+  padding: 1rem 0.75rem;
+}
+
+.text_field__input:focus {
+  color: #212529;
+  outline: 0;
+  border-bottom: 1px solid #03a9f4;
+  box-shadow: none;
+  background-color: #eee;
+}
+
+.text_field__input::-moz-placeholder,
+.text_field__input::placeholder {
+  color: transparent;
+}
+
+.text_field__input:focus,
+.text_field__input:not(:placeholder-shown) {
+  padding-top: 1.625rem;
+  padding-bottom: 0.625rem;
+  border-bottom: 1px solid #03a9f4;
+}
+
+.text_field__input:focus ~ .text_field__label,
+.text_field__input:not(:placeholder-shown) ~ .text_field__label {
+  transform: scale(0.85) translateY(-0.75rem) translateX(0.15rem);
+  color: #03a9f4;
+}

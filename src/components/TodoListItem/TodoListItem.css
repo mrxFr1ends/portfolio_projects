@@ -1,0 +1,54 @@
+.todos_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  transition: 0.4s all ease-in-out;
+}
+.todos_item:hover {
+  background-color: #eee;
+}
+.todos_item:hover .todoBtnRemove {
+  opacity: 1;
+}
+
+.todoBtnComplete, .todoBtnRemove {
+  display: inline-block;
+  width: 10%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s all ease-in;
+}
+.todoBtnRemove {
+  opacity: 0;
+}
+.cross_button:hover {
+  opacity: 0.4;
+  fill: red;
+  transform: rotate(-90deg);
+}
+
+.todoText {
+  width: 80%;
+}
+.todoText_strike {
+  position: relative;
+  white-space: nowrap;
+}
+.todoText_strike:after {
+  transition: all 0.3s ease-in;
+  border-top: 2px solid black;
+  position: absolute;
+  content: "";
+  right: 0;
+  top: calc(50% + 1px);
+  left: 0;
+  width: 0%;
+}
+.todoText_strike.active:after {
+  width: 100%;
+}

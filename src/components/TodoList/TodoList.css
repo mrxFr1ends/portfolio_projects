@@ -1,0 +1,25 @@
+.todos_list {
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  overflow-x: hidden;
+  overflow-y: overlay;
+  height: 40vh;
+}
+.todos_list::-webkit-scrollbar {
+  display: none;
+}
+
+.todos_item-enter {
+  opacity: 0.01;
+}
+.todos_item-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.todos_item-exit {
+  opacity: 1;
+}
+.todos_item-exit-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
