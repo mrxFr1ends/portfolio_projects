@@ -18,6 +18,7 @@ function App() {
     { id: 9, isComplete: true, text: "Lea123110" },
   ]);
   const [todoValue, setTodoValue] = useState("");
+  const [modal, setModal] = useState(true);
 
   const completeTodo = (id) => {
     setTodos(
@@ -48,8 +49,8 @@ function App() {
 
   return (
     <div className="container">
-      <ModalWindow visible={false}>
-
+      <ModalWindow visible={modal} setVisible={setModal}>
+        <div>123</div>
       </ModalWindow>
       <TextField 
         name="todo" 
@@ -58,7 +59,7 @@ function App() {
         onChange={(e) => setTodoValue(e.target.value)} 
         onKeyUp={(e) => e.key === "Enter" && addTodo()}
       />
-      <TodoList todos={todos} onComplete={completeTodo} onRemove={removeTodo} />
+      <TodoList todos={todos} onComplete={completeTodo} onRemove={removeTodo} onSelect={_ => setModal(true)}/>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import {TransitionGroup, CSSTransition} from 'react-transition-group';
 import TodoListItem from '../TodoListItem/TodoListItem.jsx';
 import './TodoList.css'
 
-const TodoList = ({todos, onComplete, onRemove}) => {
+const TodoList = ({todos, onComplete, onRemove, onSelect}) => {
   return (
     <ul className="todos_list">
       <TransitionGroup>
@@ -13,6 +13,7 @@ const TodoList = ({todos, onComplete, onRemove}) => {
               item={item}
               onComplete={onComplete}
               onRemove={onRemove}
+              // onClick={onSelect}
               key={item.id}
             />
           </CSSTransition>

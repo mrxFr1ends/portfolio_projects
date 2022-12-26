@@ -5,6 +5,7 @@
   width: 100%;
   height: 50px;
   transition: 0.4s all ease-in-out;
+  cursor: pointer;
 }
 .todos_item:hover {
   background-color: #eee;
