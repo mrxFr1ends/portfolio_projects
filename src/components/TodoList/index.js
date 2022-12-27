@@ -1,9 +1,9 @@
 import React from 'react';
 import {TransitionGroup, CSSTransition} from 'react-transition-group';
-import TodoListItem from '../TodoListItem/TodoListItem.jsx';
-import './TodoList.css'
+import TodoListItem from '../TodoListItem';
+import './index.css'
 
-const TodoList = ({todos, onComplete, onRemove, onSelect}) => {
+const TodoList = ({todos, onChangeStatus, onRemove, onSelect}) => {
   return (
     <ul className="todos_list">
       <TransitionGroup>
@@ -11,9 +11,9 @@ const TodoList = ({todos, onComplete, onRemove, onSelect}) => {
           <CSSTransition key={item.id} timeout={300} classNames="todos_item">
             <TodoListItem
               item={item}
-              onComplete={onComplete}
+              onChangeStatus={onChangeStatus}
               onRemove={onRemove}
-              // onClick={onSelect}
+              onClick={_ => onSelect(item)}
               key={item.id}
             />
           </CSSTransition>

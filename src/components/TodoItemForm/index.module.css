@@ -1,0 +1,15 @@
+.todoForm > *:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.todoCheck {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.todoCheck_label {
+  margin-left: 10px;
+  font-size: 15px;
+}

@@ -1,57 +1,66 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./App.css";
-import TextField from "./components/TextField/TextField";
-import TodoList from "./components/TodoList/TodoList.jsx";
-import ModalWindow from './components/ModalWindow/ModalWindow';
+import TextField from "./components/TextField";
+import TodoList from "./components/TodoList";
+import ModalWindow from './components/ModalWindow';
+import TodoItemForm from "./components/TodoItemForm";
+import useTodoState from "./hooks/useTodoState";
+import {CSSTransition} from 'react-transition-group';
+
+const generateTodos = () => {
+  let todos = [];
+  for (let i = 0; i < 10; ++i) {
+    todos.push({
+      id: i,
+      isComplete: Math.round(Math.random() * 10) % 2 == 0,
+      header: i + ": " + Math.random().toString(36).slice(2, 7),
+      content: i + ": " + Math.random().toString(36).slice(2)
+    })
+  }
+  return todos;
+};
+const defaultTodos = generateTodos();
 
 function App() {
-  const [todos, setTodos] = useState([
-    { id: 0, isComplete: false, text: "Learn Rect 1" },
-    { id: 1, isComplete: true, text: "Learn Rect 2" },
-    { id: 2, isComplete: false, text: "ergerg" },
-    { id: 3, isComplete: true, text: "eergerg4" },
-    { id: 4, isComplete: false, text: "Learn Rect 5" },
-    { id: 5, isComplete: true, text: "Leagergergct 6" },
-    { id: 6, isComplete: false, text: "Learn Rect 7" },
-    { id: 7, isComplete: true, text: "Lear124fet 8" },
-    { id: 8, isComplete: false, text: "Lea124124 9" },
-    { id: 9, isComplete: true, text: "Lea123110" },
-  ]);
+  const {
+    todos, 
+    addTodo, 
+    changeTodo, 
+    removeTodo, 
+    toggleStatusTodo
+  } = useTodoState(defaultTodos);
+
   const [todoValue, setTodoValue] = useState("");
-  const [modal, setModal] = useState(true);
+  const [openTodoInfo, setOpenTodoInfo] = useState(false);
+  const [selectedTodo, setSelectedTodo] = useState({});
 
-  const completeTodo = (id) => {
-    setTodos(
-      todos.map((item) => {
-        if (item.id === id) return { ...item, isComplete: !item.isComplete };
-        return item;
-      })
-    );
-  };
+  //todo: Добавить цвета по важности, или например сортировку по важности.
 
-  const removeTodo = (id) => {
-    setTodos(todos.filter((item) => item.id !== id));
-  };
+  const selectTodo = (item) => {
+    setSelectedTodo(item); 
+    setOpenTodoInfo(true);
+  }
 
-  const addTodo = () => {
-    if (todoValue === "") return;
-    const newTodo = {
-      id: Date.now(),
-      isComplete: false,
-      text: todoValue,
-    };
-    setTodos([newTodo, ...todos]);
-    setTodoValue("");
-  };
-
-  //todo: Сделать доп инфу в айтеме, сделать кнопку просмотра деталей и
-  //todo: edit. Добавить цвета по важности, или например сортировку по важности
+  const nodeRef = useRef(null);
 
   return (
     <div className="container">
-      <ModalWindow visible={modal} setVisible={setModal}>
-        <div>123</div>
-      </ModalWindow>
+      {/* {openTodoInfo && 
+        <ModalWindow visible={true} setVisible={setOpenTodoInfo}>
+          <TodoItemForm 
+            item={selectedTodo}
+            onChangeItem={changeTodo}
+          />
+        </ModalWindow>
+      } */}
+      <CSSTransition in={openTodoInfo}classNames='modal' timeout={150} unmountOnExit>
+        <ModalWindow setVisible={setOpenTodoInfo}>
+          <TodoItemForm 
+            item={selectedTodo}
+            onChangeItem={changeTodo}
+          />
+        </ModalWindow>
+      </CSSTransition>
       <TextField 
         name="todo" 
         value={todoValue} 
@@ -59,7 +68,7 @@ function App() {
         onChange={(e) => setTodoValue(e.target.value)} 
         onKeyUp={(e) => e.key === "Enter" && addTodo()}
       />
-      <TodoList todos={todos} onComplete={completeTodo} onRemove={removeTodo} onSelect={_ => setModal(true)}/>
+      <TodoList todos={todos} onChangeStatus={toggleStatusTodo} onRemove={removeTodo} onSelect={selectTodo}/>
     </div>
   );
 }
