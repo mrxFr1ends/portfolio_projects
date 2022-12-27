@@ -41,18 +41,18 @@ function App() {
     setOpenTodoInfo(true);
   }
 
-  const nodeRef = useRef(null);
+  const handlePressEnter = () => {
+    if (todoValue === "") return;
+    addTodo({
+      id: Date.now(),
+      isComplete: false,
+      header: todoValue,
+    });
+    setTodoValue("");
+  }
 
   return (
     <div className="container">
-      {/* {openTodoInfo && 
-        <ModalWindow visible={true} setVisible={setOpenTodoInfo}>
-          <TodoItemForm 
-            item={selectedTodo}
-            onChangeItem={changeTodo}
-          />
-        </ModalWindow>
-      } */}
       <CSSTransition in={openTodoInfo}classNames='modal' timeout={150} unmountOnExit>
         <ModalWindow setVisible={setOpenTodoInfo}>
           <TodoItemForm 
@@ -66,11 +66,20 @@ function App() {
         value={todoValue} 
         title="Todo" 
         onChange={(e) => setTodoValue(e.target.value)} 
-        onKeyUp={(e) => e.key === "Enter" && addTodo()}
+        onKeyUp={(e) => e.key === "Enter" && handlePressEnter()}
       />
       <TodoList todos={todos} onChangeStatus={toggleStatusTodo} onRemove={removeTodo} onSelect={selectTodo}/>
     </div>
   );
 }
+
+// if (todoValue === "") return;
+//     const newTodo = {
+//       id: Date.now(),
+//       isComplete: false,
+//       text: todoValue,
+//     };
+//     setTodos([newTodo, ...todos]);
+//     setTodoValue("");
 
 export default App;
