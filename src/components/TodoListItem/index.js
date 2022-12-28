@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import CheckBox from '../CheckBox';
 import Button from '../Button';
 import { CheckMarkIcon, CrossIcon } from '../../icons/Icons';
@@ -9,8 +9,7 @@ const TodoListItem = ({ item, onChangeStatus, onRemove, onClick }) => {
     <div className="todos_item" onClick={onClick}>
       <CheckBox 
         check={item.isComplete} 
-        setCheck={_ => onChangeStatus(item.id)} 
-        icon={<CheckMarkIcon/>}
+        setCheck={_ => onChangeStatus(item.id)}
         onClick={e => e.stopPropagation()} />
       <span className={["todoText_strike", item.isComplete ? "active" : ""].join(' ')}>
         {item.header}
@@ -24,4 +23,4 @@ const TodoListItem = ({ item, onChangeStatus, onRemove, onClick }) => {
   );
 };
 
-export default TodoListItem;
+export default memo(TodoListItem);

@@ -34,8 +34,7 @@ const TodoItemForm = ({item, onChangeItem}) => {
       />
       <div className={cl.todoCheck}>
         <CheckBox 
-          check={complete} 
-          icon={<CheckMarkIcon/>}
+          check={complete}
           setCheck={e => setComplete(e.target.checked)}
         />
         <div className={cl.todoCheck_label}>Status</div>

@@ -7,7 +7,6 @@
   cursor: pointer;
   padding: 0 5%;
 }
-
 .todos_item:hover {
   background-color: #eee;
 }
@@ -40,4 +39,14 @@
 }
 .todoText_strike.active:after {
   width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  .todos_item:hover .cross_button {
+    opacity: 0.4;
+  }
+  .cross_button {
+    opacity: 0.4;
+    fill: red;
+  }
 }

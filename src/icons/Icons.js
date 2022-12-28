@@ -11,9 +11,9 @@ export const CrossIcon = () => {
   );
 };
 
-export const CheckMarkIcon = () => {
+export const CheckMarkIcon = (props) => {
   return (
-    <svg viewBox="0 0 38 38" transform="scale(1.5)">
+    <svg {...props} viewBox="0 0 38 38">
       <rect height="2.5" rx="1.25" transform="translate(-6.77 20.949) rotate(-45)" width="13.08" x="14.509" y="17.75"/>
       <rect height="2.5" rx="1.25" transform="translate(11.695 46.523) rotate(-135)" width="8.267" x="11.116" y="19.451"/>
     </svg>

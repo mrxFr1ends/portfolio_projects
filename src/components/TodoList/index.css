@@ -23,3 +23,9 @@
   opacity: 0.01;
   transition: opacity 300ms ease-in;
 }
+
+@media screen and (max-width: 600px) {
+  .todos_list {
+    height: calc(100% - 58px);
+  }
+}

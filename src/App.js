@@ -1,22 +1,33 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import TextField from "./components/TextField";
 import TodoList from "./components/TodoList";
 import ModalWindow from './components/ModalWindow';
 import TodoItemForm from "./components/TodoItemForm";
 import useTodoState from "./hooks/useTodoState";
-import {CSSTransition} from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 
+function shuffle(array) {
+  let currentIndex = array.length,  randomIndex;
+  while (currentIndex != 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    [array[currentIndex], array[randomIndex]] = 
+      [array[randomIndex], array[currentIndex]];
+  }
+  return array;
+}
 const generateTodos = () => {
+  let headers = shuffle(['Погулять с собакой', 'Погулять с кошкой', 'Приготовить ужин', 'Приготовить обед', 'Помыться', 'Сходить в музей', 'Сходить на рынок']);
+  let contents = ['Не придумал идите на: '];
   let todos = [];
-  for (let i = 0; i < 10; ++i) {
+  for (let i = 0; i < headers.length; ++i)
     todos.push({
       id: i,
       isComplete: Math.round(Math.random() * 10) % 2 == 0,
-      header: i + ": " + Math.random().toString(36).slice(2, 7),
-      content: i + ": " + Math.random().toString(36).slice(2)
-    })
-  }
+      header: headers[i],
+      content: contents[0] + Math.round(Math.random() * 100)
+    });
   return todos;
 };
 const defaultTodos = generateTodos();
@@ -34,7 +45,9 @@ function App() {
   const [openTodoInfo, setOpenTodoInfo] = useState(false);
   const [selectedTodo, setSelectedTodo] = useState({});
 
+  //todo: добавить панель с кнопками удаления выполненных, выполнить все сразу
   //todo: Добавить цвета по важности, или например сортировку по важности.
+  //todo: мб еще привязку файлов сделать
 
   const selectTodo = (item) => {
     setSelectedTodo(item); 
@@ -53,7 +66,7 @@ function App() {
 
   return (
     <div className="container">
-      <CSSTransition in={openTodoInfo}classNames='modal' timeout={150} unmountOnExit>
+      <CSSTransition in={openTodoInfo} classNames='modal' timeout={150} unmountOnExit>
         <ModalWindow setVisible={setOpenTodoInfo}>
           <TodoItemForm 
             item={selectedTodo}
@@ -72,14 +85,5 @@ function App() {
     </div>
   );
 }
-
-// if (todoValue === "") return;
-//     const newTodo = {
-//       id: Date.now(),
-//       isComplete: false,
-//       text: todoValue,
-//     };
-//     setTodos([newTodo, ...todos]);
-//     setTodoValue("");
 
 export default App;
