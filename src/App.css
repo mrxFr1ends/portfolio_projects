@@ -3,6 +3,7 @@
   height: auto;
   background-color: #f5f5f5;
   border-radius: 0.25rem;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 992px) {
@@ -32,4 +33,30 @@
 .modal-exit-active {
   opacity: 0;
   transition: opacity 150ms ease-in;
+}
+
+
+.todo_panel {
+  display: flex;
+  align-content: stretch;
+}
+.todo_panel_button {
+  height: auto !important;
+  width: 10% !important;
+  border-radius: 0 !important;
+  border-bottom: 1px solid #bdbdbd;
+}
+
+.todo_panel_button:hover {
+  border-color: #03a9f4;
+  background-color: rgba(0,0,0,0.1);
+}
+.todo_panel_button:hover .todo_panel_icon {
+  fill: rgba(0,0,0,0.6);
+}
+
+.todo_panel_icon {
+  width: 70%;
+  fill: rgba(0,0,0,0.5);
+  transition: 0.3s all ease-in;
 }

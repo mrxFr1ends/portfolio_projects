@@ -6,6 +6,8 @@ import ModalWindow from './components/ModalWindow';
 import TodoItemForm from "./components/TodoItemForm";
 import useTodoState from "./hooks/useTodoState";
 import { CSSTransition } from 'react-transition-group';
+import Button from "./components/Button";
+import {CrossIcon, SearchIcon, TaskAddIcon, TaskCompleteIcon, TaskRemoveIcon, TrashcanIcon} from './icons/Icons';
 
 function shuffle(array) {
   let currentIndex = array.length,  randomIndex;
@@ -35,6 +37,7 @@ const defaultTodos = generateTodos();
 function App() {
   const {
     todos, 
+    setTodos,
     addTodo, 
     changeTodo, 
     removeTodo, 
@@ -47,14 +50,13 @@ function App() {
 
   //todo: добавить панель с кнопками удаления выполненных, выполнить все сразу
   //todo: Добавить цвета по важности, или например сортировку по важности.
-  //todo: мб еще привязку файлов сделать
 
   const selectTodo = (item) => {
     setSelectedTodo(item); 
     setOpenTodoInfo(true);
   }
 
-  const handlePressEnter = () => {
+  const addNewTodo = () => {
     if (todoValue === "") return;
     addTodo({
       id: Date.now(),
@@ -62,6 +64,14 @@ function App() {
       header: todoValue,
     });
     setTodoValue("");
+  }
+
+  const completeAllTodos = () => {
+    setTodos(todos.map(element => {return {...element, isComplete: true};}))
+  }
+
+  const removeCompleteTodos = () => {
+    setTodos(todos.filter(element => element.isComplete === false))
   }
 
   return (
@@ -74,13 +84,30 @@ function App() {
           />
         </ModalWindow>
       </CSSTransition>
-      <TextField 
-        name="todo" 
-        value={todoValue} 
-        title="Todo" 
-        onChange={(e) => setTodoValue(e.target.value)} 
-        onKeyUp={(e) => e.key === "Enter" && handlePressEnter()}
-      />
+      <div className="todo_panel">
+        <TextField 
+          name="todo" 
+          value={todoValue} 
+          title="Todo" 
+          onChange={e => setTodoValue(e.target.value)} 
+          onKeyUp={e => e.key === "Enter" && addNewTodo()}
+        />
+        <Button 
+          className="todo_panel_button"
+          onClick={_ => addNewTodo()} 
+          icon={<TaskAddIcon className="todo_panel_icon"/>}
+        />
+        <Button 
+          className="todo_panel_button"
+          onClick={_ => completeAllTodos()}
+          icon={<TaskCompleteIcon className="todo_panel_icon"/>}
+        />
+        <Button 
+          className="todo_panel_button"
+          onClick={_ => removeCompleteTodos()} 
+          icon={<TaskRemoveIcon className="todo_panel_icon"/>}
+        />
+      </div>
       <TodoList todos={todos} onChangeStatus={toggleStatusTodo} onRemove={removeTodo} onSelect={selectTodo}/>
     </div>
   );

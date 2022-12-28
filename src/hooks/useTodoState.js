@@ -5,6 +5,7 @@ export default initialValue => {
 
   return {
     todos,
+    setTodos: setTodos,
     addTodo: newTodo => setTodos(
       [newTodo, ...todos]
     ),
