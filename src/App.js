@@ -50,6 +50,8 @@ function App() {
 
   //todo: добавить панель с кнопками удаления выполненных, выполнить все сразу
   //todo: Добавить цвета по важности, или например сортировку по важности.
+  //todo: сделать где-нибудь в locale storage
+  //todo: оптимизировать по максимуму просто
 
   const selectTodo = (item) => {
     setSelectedTodo(item); 
@@ -58,12 +60,14 @@ function App() {
 
   const addNewTodo = () => {
     if (todoValue === "") return;
-    addTodo({
+    const todo = {
       id: Date.now(),
       isComplete: false,
       header: todoValue,
-    });
+    };
+    addTodo(todo);
     setTodoValue("");
+    return todo;
   }
 
   const completeAllTodos = () => {
@@ -72,6 +76,14 @@ function App() {
 
   const removeCompleteTodos = () => {
     setTodos(todos.filter(element => element.isComplete === false))
+  }
+
+  const handleAddTodo = () => {
+    const todo = addNewTodo();
+    if (todo) {
+      setSelectedTodo(todo);
+      setOpenTodoInfo(true);
+    }
   }
 
   return (
@@ -94,7 +106,7 @@ function App() {
         />
         <Button 
           className="todo_panel_button"
-          onClick={_ => addNewTodo()} 
+          onClick={_ => handleAddTodo()} 
           icon={<TaskAddIcon className="todo_panel_icon"/>}
         />
         <Button 
