@@ -13,11 +13,11 @@
   background: transparent;
 }
 .todos_list::-webkit-scrollbar-thumb {
-  background-color: rgba(0,0,0,0.1);
+  background-color: var(--scrollbar-background-color);
   border-radius: 20px;
 }
 .todos_list::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0,0,0,0.15);
+  background-color: var(--scrollbar-background-color-hover);
 }
 
 .todos_item-enter {

@@ -25,15 +25,18 @@ const TodoItemForm = ({item, onChangeItem}) => {
         value={header} 
         title="Header"
         onChange={e => setHeader(e.target.value)}
+        className={cl.todo_info_field}
       />
       <TextField 
         name="todo_content" 
         value={content} 
         title="Content"
         onChange={e => setContent(e.target.value)}
+        className={cl.todo_info_field}
       />
       <div className={cl.todoCheck}>
         <CheckBox 
+          className={cl.todo_info_checkbox}
           check={complete}
           setCheck={e => setComplete(e.target.checked)}
         />

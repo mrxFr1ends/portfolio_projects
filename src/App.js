@@ -54,11 +54,14 @@ function App() {
   const [openTodoInfo, setOpenTodoInfo] = useState(false);
   const [selectedTodo, setSelectedTodo] = useState({});
 
+  //info: ИДЕИ ПО ФУНКЦИОНАЛУ
   //todo: сделать возможность закреплять todo (добавить инонку кнопки к этому todo в списке) и они будут в самом верху
-  //todo: сделать где-нибудь в locale storage
   //todo: оптимизировать по максимуму просто
+  //todo: при нажатии на Enter в Content (в форме) сделать закрытие окна
+
+  //info: ПРАВКИ ПО СТИЛЮ
   //todo: у меня почему то на телефоне нет зеленых иконок у выполненых todo
-  //todo: переключение темной на светлую тему в правый нижний угол
+  //todo: подумать над тем, что при обновлении задний фон с белого переходит в темный (при темном стиле)
 
   const selectTodo = (item) => {
     setSelectedTodo(item); 
@@ -100,7 +103,7 @@ function App() {
   return (
     <div className="container">
       <CSSTransition in={openTodoInfo} classNames='modal' timeout={150} unmountOnExit>
-        <ModalWindow setVisible={setOpenTodoInfo}>
+        <ModalWindow setVisible={setOpenTodoInfo} className="modal_window">
           <TodoItemForm 
             item={selectedTodo}
             onChangeItem={changeTodo}

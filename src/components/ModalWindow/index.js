@@ -1,13 +1,13 @@
 import React from 'react';
 import cl from './index.module.css'
 
-const ModalWindow = ({ children, setVisible }) => {
+const ModalWindow = ({ children, setVisible, className }) => {
   return (
     <div
       className={cl.modal}
       onClick={() => setVisible(false)}
     >
-      <div className={cl.modal__content} onClick={(e) => e.stopPropagation()}>
+      <div className={[className, cl.modal__content].join(' ')} onClick={(e) => e.stopPropagation()}>
         {children}
       </div>
     </div>

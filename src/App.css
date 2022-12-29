@@ -30,6 +30,11 @@
   transition: opacity 150ms ease-in;
 }
 
+.modal_window {
+  background-color: var(--main-todo-background-color) !important;
+  box-shadow: var(--main-todo-box-shadow) !important;
+}
+
 
 .todo_panel {
   display: flex;
@@ -37,7 +42,8 @@
 }
 .todo_panel_field {
   color: var(--main-color) !important;
-  border-color: var(--main-color) !important;
+  border-color: var(--panel-border-color) !important;
+  transition: 0.3s border-color ease-in !important;
 }
 .todo_panel_field:focus {
   background-color: var(--panel-field-backgrond-color-focus) !important;
@@ -47,7 +53,7 @@
   height: auto !important;
   width: 10% !important;
   border-radius: 0 !important;
-  border-bottom: 1px solid var(--main-color);
+  border-bottom: 1px solid var(--panel-border-color);
 }
 
 .todo_panel_button:hover {
@@ -55,7 +61,7 @@
   background-color: var(--main-color-hover);
 }
 .todo_panel_button:hover .todo_panel_icon {
-  fill: var(--panel-button-fill-color);
+  opacity: 0.7;
 }
 
 .todo_panel_icon {

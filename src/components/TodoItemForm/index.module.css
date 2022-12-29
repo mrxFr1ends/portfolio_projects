@@ -2,6 +2,23 @@
   margin-bottom: 20px;
 }
 
+.todo_info_field {
+  color: var(--main-color) !important;
+  border-color: var(--panel-border-color) !important;
+  transition: 0.3s border-color ease-in !important;
+}
+.todo_info_field:focus {
+  background-color: var(--panel-field-backgrond-color-focus) !important;
+  border-color: #03a9f4 !important;
+}
+
+.todo_info_checkbox {
+  border-color: var(--todo-checkbox-border-color);
+}
+.todo_info_checkbox:hover {
+  border-color: var(--todo-checkbox-border-color-hover);
+}
+
 .todoCheck {
   display: flex;
   justify-content: center;
