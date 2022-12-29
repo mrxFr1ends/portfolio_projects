@@ -1,0 +1,31 @@
+html[data-theme='dark'] {
+  --main-background-color: #30343c;
+  --main-todo-background-color: #202122;
+  --main-todo-box-shadow: rgba(255, 255, 255, 0.4) 0px 0px 4px;
+  --main-color: rgb(190, 190, 190);
+  --main-color-hover : rgb(39, 39, 39);
+  --panel-button-fill-color: rgb(255, 255, 255);
+  --panel-field-backgrond-color-focus: rgb(45, 45, 45);
+  --todo-checkbox-border-color: rgb(178, 175, 175);
+  --todo-checkbox-border-color-hover: rgb(250, 251, 250);
+  --swap-background-color: rgb(241, 241, 241);
+  --swap-background-color-hover: rgb(153, 153, 153);
+  --swap-fill-color: rgb(31, 31, 31, 0.6);
+  --swap-fill-color-hover: rgb(237, 237, 237);
+}
+
+html[data-theme='light'] {
+  --main-background-color: #ffffff;
+  --main-todo-background-color: #f5f5f5;
+  --main-todo-box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 4px;
+  --main-color: #212529;
+  --main-color-hover : #eee;
+  --panel-button-fill-color: rgba(0,0,0,0.6);
+  --panel-field-backgrond-color-focus: #eee;
+  --todo-checkbox-border-color: rgba(0,0,0,0.2);
+  --todo-checkbox-border-color-hover: rgba(0,0,0,0.4);
+  --swap-background-color: rgb(113, 111, 111);
+  --swap-background-color-hover: rgba(0,0,0,0.1);
+  --swap-fill-color: rgb(237, 237, 237);
+  --swap-fill-color-hover: rgb(31, 31, 31, 0.5);
+}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import TextField from "./components/TextField";
 import TodoList from "./components/TodoList";
@@ -7,7 +7,8 @@ import TodoItemForm from "./components/TodoItemForm";
 import useTodoState from "./hooks/useTodoState";
 import { CSSTransition } from 'react-transition-group';
 import Button from "./components/Button";
-import {CrossIcon, SearchIcon, TaskAddIcon, TaskCompleteIcon, TaskRemoveIcon, TrashcanIcon} from './icons/Icons';
+import {CrossIcon, MoonIcon, SearchIcon, SunIcon, TaskAddIcon, TaskCompleteIcon, TaskRemoveIcon, TrashcanIcon} from './icons/Icons';
+import useTheme from './hooks/useTheme'
 
 function shuffle(array) {
   let currentIndex = array.length,  randomIndex;
@@ -35,6 +36,11 @@ const generateTodos = () => {
 const defaultTodos = generateTodos();
 
 function App() {
+  const getSavedTodos = () => {
+    const savedTodos = localStorage.getItem("todos");
+    return savedTodos ? JSON.parse(savedTodos) : [];
+  };
+  const { theme, setTheme } = useTheme();
   const {
     todos, 
     setTodos,
@@ -42,21 +48,26 @@ function App() {
     changeTodo, 
     removeTodo, 
     toggleStatusTodo
-  } = useTodoState(defaultTodos);
+  } = useTodoState(getSavedTodos());
 
   const [todoValue, setTodoValue] = useState("");
   const [openTodoInfo, setOpenTodoInfo] = useState(false);
   const [selectedTodo, setSelectedTodo] = useState({});
 
-  //todo: добавить панель с кнопками удаления выполненных, выполнить все сразу
-  //todo: Добавить цвета по важности, или например сортировку по важности.
+  //todo: сделать возможность закреплять todo (добавить инонку кнопки к этому todo в списке) и они будут в самом верху
   //todo: сделать где-нибудь в locale storage
   //todo: оптимизировать по максимуму просто
+  //todo: у меня почему то на телефоне нет зеленых иконок у выполненых todo
+  //todo: переключение темной на светлую тему в правый нижний угол
 
   const selectTodo = (item) => {
     setSelectedTodo(item); 
     setOpenTodoInfo(true);
   }
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const addNewTodo = () => {
     if (todoValue === "") return;
@@ -103,6 +114,7 @@ function App() {
           title="Todo" 
           onChange={e => setTodoValue(e.target.value)} 
           onKeyUp={e => e.key === "Enter" && addNewTodo()}
+          className="todo_panel_field"
         />
         <Button 
           className="todo_panel_button"
@@ -121,6 +133,12 @@ function App() {
         />
       </div>
       <TodoList todos={todos} onChangeStatus={toggleStatusTodo} onRemove={removeTodo} onSelect={selectTodo}/>
+      <div className="swap_theme" onClick={_ => setTheme(prevState => prevState == 'light' ? 'dark' : 'light')}>
+        {theme == 'dark' 
+          ? <SunIcon className="swap_theme_icon" />
+          : <MoonIcon className="swap_theme_icon" />
+        }
+      </div>
     </div>
   );
 }

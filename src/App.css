@@ -1,9 +1,11 @@
 .container {
   width: 30%;
   height: auto;
-  background-color: #f5f5f5;
+  background-color: var(--main-todo-background-color);
+  box-shadow: var(--main-todo-box-shadow);
   border-radius: 0.25rem;
   overflow: hidden;
+  transition: 0.3s all ease-in;
 }
 
 @media screen and (max-width: 992px) {
@@ -33,25 +35,59 @@
   display: flex;
   align-content: stretch;
 }
+.todo_panel_field {
+  color: var(--main-color) !important;
+  border-color: var(--main-color) !important;
+}
+.todo_panel_field:focus {
+  background-color: var(--panel-field-backgrond-color-focus) !important;
+  border-color: #03a9f4 !important;
+}
 .todo_panel_button {
   height: auto !important;
   width: 10% !important;
   border-radius: 0 !important;
-  border-bottom: 1px solid #bdbdbd;
+  border-bottom: 1px solid var(--main-color);
 }
 
 .todo_panel_button:hover {
   border-color: #03a9f4;
-  background-color: rgba(0,0,0,0.1);
+  background-color: var(--main-color-hover);
 }
 .todo_panel_button:hover .todo_panel_icon {
-  fill: rgba(0,0,0,0.6);
+  fill: var(--panel-button-fill-color);
 }
 
 .todo_panel_icon {
   width: 70%;
-  fill: rgba(0,0,0,0.5);
+  fill: var(--main-color);
+  opacity: 0.5;
   transition: 0.3s all ease-in;
+}
+
+.swap_theme {
+  position: fixed;
+  left: calc(100% - 70px);
+  top: calc(100% - 70px);
+  width: 50px;
+  height: 50px;
+  border: 1px solid rgba(0,0,0,0.4);
+  background-color: var(--swap-background-color);
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+  transition: 0.3s all ease-in;
+}
+.swap_theme_icon {
+  fill: var(--swap-fill-color);
+  transition: 0.3s all ease-in;
+}
+.swap_theme:hover {
+  border-color: rgba(0,0,0,0.6);
+  background-color: var(--swap-background-color-hover);
+}
+.swap_theme:hover .swap_theme_icon {
+  fill: var(--swap-fill-color-hover);
 }
 
 @media screen and (max-width: 600px) {

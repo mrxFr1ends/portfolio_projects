@@ -10,7 +10,8 @@ const TodoListItem = ({ item, onChangeStatus, onRemove, onClick }) => {
       <CheckBox 
         check={item.isComplete} 
         setCheck={_ => onChangeStatus(item.id)}
-        onClick={e => e.stopPropagation()} />
+        onClick={e => e.stopPropagation()} 
+        className="todoComplete"/>
       <span className={["todoText_strike", item.isComplete ? "active" : ""].join(' ')}>
         {item.header}
       </span>

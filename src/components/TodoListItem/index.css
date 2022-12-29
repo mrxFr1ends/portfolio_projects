@@ -8,18 +8,26 @@
   padding: 0 5%;
 }
 .todos_item:hover {
-  background-color: #eee;
+  background-color: var(--main-color-hover);
 }
 
 .todos_item:hover .cross_button {
   opacity: 0.2;
 }
 
+.todoComplete {
+  border-color: var(--todo-checkbox-border-color);
+}
+.todoComplete:hover {
+  border-color: var(--todo-checkbox-border-color-hover);
+}
+
 .cross_button {
   opacity: 0;
+  fill: var(--main-color);
 }
 .cross_button:hover {
-  opacity: 0.4 !important;
+  opacity: 0.6 !important;
   fill: red;
 }
 
@@ -29,7 +37,7 @@
 }
 .todoText_strike:after {
   transition: all 0.3s ease-in;
-  border-top: 2px solid black;
+  border-top: 2px solid var(--main-color);
   position: absolute;
   content: "";
   right: 0;

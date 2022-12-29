@@ -1,11 +1,11 @@
 import React from 'react';
 import cl from './index.module.css'
 
-const TextField = ({value, title, name, onChange, onKeyUp}) => {
+const TextField = ({value, title, name, onChange, onKeyUp, className}) => {
   return (
     <div className={cl.text_field}>
       <input
-        className={cl.text_field__input}
+        className={[className, cl.text_field__input].join(' ')}
         type="text"
         id={name}
         name={name}
