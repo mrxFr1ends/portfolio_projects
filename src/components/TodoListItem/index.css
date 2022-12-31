@@ -27,13 +27,31 @@
   fill: var(--main-color);
 }
 .cross_button:hover {
-  opacity: 0.6 !important;
   fill: red;
+  opacity: 0.4 !important;
 }
+
+.todo_pin_btn {
+  margin-right: 5%;
+  stroke: var(--main-color);
+  stroke-width: 2;
+  fill: transparent;
+  transition: 0.3s all ease-in;
+  opacity: 0.4;
+}
+.todo_pin_btn:hover {
+  opacity: 0.6;
+}
+.todo_pin_btn.active {
+  fill: var(--main-color);
+}
+
 
 .todoText_strike {
   position: relative;
   white-space: nowrap;
+  margin-right: auto;
+  margin-left: 5%;
 }
 .todoText_strike:after {
   transition: all 0.3s ease-in;

@@ -1,10 +1,10 @@
 import React, { memo } from 'react';
 import CheckBox from '../CheckBox';
 import Button from '../Button';
-import { CheckMarkIcon, CrossIcon } from '../../icons/Icons';
+import { CrossIcon, PinIcon } from '../../icons/Icons';
 import './index.css'
 
-const TodoListItem = ({ item, onChangeStatus, onRemove, onClick }) => {
+const TodoListItem = ({ item, onChangeStatus, onRemove, onClick, onPin }) => {
   return (
     <div className="todos_item" onClick={onClick}>
       <CheckBox 
@@ -16,10 +16,17 @@ const TodoListItem = ({ item, onChangeStatus, onRemove, onClick }) => {
         {item.header}
       </span>
       <Button 
+        className={["todo_pin_btn", item.isPin ? "active" : ""].join(' ')}
+        onClick={e => {e.stopPropagation(); onPin(item.id)}}
+      >
+        <PinIcon className="todo_pin_icon"/>
+      </Button>
+      <Button 
         className="cross_button" 
-        onClick={e => {e.stopPropagation(); onRemove(item.id); }} 
-        icon={<CrossIcon />}
-      />
+        onClick={e => {e.stopPropagation(); onRemove(item.id); }}
+      >
+        <CrossIcon />
+      </Button>
     </div>
   );
 };

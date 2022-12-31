@@ -7,33 +7,10 @@ import TodoItemForm from "./components/TodoItemForm";
 import useTodoState from "./hooks/useTodoState";
 import { CSSTransition } from 'react-transition-group';
 import Button from "./components/Button";
-import {CrossIcon, MoonIcon, SearchIcon, SunIcon, TaskAddIcon, TaskCompleteIcon, TaskRemoveIcon, TrashcanIcon} from './icons/Icons';
+import { MoonIcon, SunIcon, TaskAddIcon, TaskCompleteIcon, TaskRemoveIcon } from './icons/Icons';
 import useTheme from './hooks/useTheme'
+import _ from "lodash";
 
-function shuffle(array) {
-  let currentIndex = array.length,  randomIndex;
-  while (currentIndex != 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-    [array[currentIndex], array[randomIndex]] = 
-      [array[randomIndex], array[currentIndex]];
-  }
-  return array;
-}
-const generateTodos = () => {
-  let headers = shuffle(['Погулять с собакой', 'Погулять с кошкой', 'Приготовить ужин', 'Приготовить обед', 'Помыться', 'Сходить в музей', 'Сходить на рынок']);
-  let contents = ['Не придумал идите на: '];
-  let todos = [];
-  for (let i = 0; i < headers.length; ++i)
-    todos.push({
-      id: i,
-      isComplete: Math.round(Math.random() * 10) % 2 == 0,
-      header: headers[i],
-      content: contents[0] + Math.round(Math.random() * 100)
-    });
-  return todos;
-};
-const defaultTodos = generateTodos();
 
 function App() {
   const getSavedTodos = () => {
@@ -55,9 +32,12 @@ function App() {
   const [selectedTodo, setSelectedTodo] = useState({});
 
   //info: ИДЕИ ПО ФУНКЦИОНАЛУ
-  //todo: сделать возможность закреплять todo (добавить инонку кнопки к этому todo в списке) и они будут в самом верху
   //todo: оптимизировать по максимуму просто
   //todo: при нажатии на Enter в Content (в форме) сделать закрытие окна
+  //todo: сделать как приложение??
+  //todo: библиотека lodash, как я понял это просто маленькая библиотека для работы с объектами (мб еще с чем-то) omit возвращает объект без тех ключей, которые ты передаешь. Так можно из props убирать те которые ты отдельно использовал и все остальные передавать в определенное место. А ЕСТЬ ЧЕ УЗНАЛ {placeholder, style, className, ...otherProps} не ну ты видел... как можно.
+  //todo: сделать фильтр по просмотру всех выполненных и всех не выполненных
+  //todo: мб сделать справа от + таска отдельную кнопку, которая будет открывать менюшку где будут еще 4 кнопки это отметить и удалить отмеченные и через линию фильтры.
 
   //info: ПРАВКИ ПО СТИЛЮ
   //todo: у меня почему то на телефоне нет зеленых иконок у выполненых todo
@@ -77,6 +57,7 @@ function App() {
     const todo = {
       id: Date.now(),
       isComplete: false,
+      isPin: false,
       header: todoValue,
     };
     addTodo(todo);
@@ -100,13 +81,29 @@ function App() {
     }
   }
 
+  const pinTodo = (id) => {
+    setTodos(prevTodos => {
+      return [...prevTodos].map(item => {
+        return item.id === id ? { ...item, isPin: !item.isPin } : item;
+      }).sort((left, right) => {
+        const comp = !left.isPin - !right.isPin;
+        return comp ? comp : right.id - left.id;
+      });
+    });
+  }
+
+  const _changeTodo = (newTodo) => {
+    changeTodo(newTodo);
+    setOpenTodoInfo(false);
+  }
+
   return (
     <div className="container">
       <CSSTransition in={openTodoInfo} classNames='modal' timeout={150} unmountOnExit>
         <ModalWindow setVisible={setOpenTodoInfo} className="modal_window">
           <TodoItemForm 
             item={selectedTodo}
-            onChangeItem={changeTodo}
+            changeTodo={_changeTodo}
           />
         </ModalWindow>
       </CSSTransition>
@@ -119,29 +116,23 @@ function App() {
           onKeyUp={e => e.key === "Enter" && addNewTodo()}
           className="todo_panel_field"
         />
-        <Button 
-          className="todo_panel_button"
-          onClick={_ => handleAddTodo()} 
-          icon={<TaskAddIcon className="todo_panel_icon"/>}
-        />
-        <Button 
-          className="todo_panel_button"
-          onClick={_ => completeAllTodos()}
-          icon={<TaskCompleteIcon className="todo_panel_icon"/>}
-        />
-        <Button 
-          className="todo_panel_button"
-          onClick={_ => removeCompleteTodos()} 
-          icon={<TaskRemoveIcon className="todo_panel_icon"/>}
-        />
+        <Button className="todo_panel_button" onClick={_ => handleAddTodo()}>
+          <TaskAddIcon className="todo_panel_icon"/>
+        </Button>
+        <Button className="todo_panel_button" onClick={_ => completeAllTodos()}>
+          <TaskCompleteIcon className="todo_panel_icon"/>
+        </Button>
+        <Button className="todo_panel_button" onClick={_ => removeCompleteTodos()}>
+          <TaskRemoveIcon className="todo_panel_icon"/>
+        </Button>
       </div>
-      <TodoList todos={todos} onChangeStatus={toggleStatusTodo} onRemove={removeTodo} onSelect={selectTodo}/>
-      <div className="swap_theme" onClick={_ => setTheme(prevState => prevState == 'light' ? 'dark' : 'light')}>
+      <TodoList todos={todos} onChangeStatus={toggleStatusTodo} onRemove={removeTodo} onSelect={selectTodo} onPin={pinTodo}/>
+      <Button className="swap_theme" onClick={_ => setTheme(prevState => prevState == 'light' ? 'dark' : 'light')}>
         {theme == 'dark' 
           ? <SunIcon className="swap_theme_icon" />
           : <MoonIcon className="swap_theme_icon" />
         }
-      </div>
+      </Button>
     </div>
   );
 }
