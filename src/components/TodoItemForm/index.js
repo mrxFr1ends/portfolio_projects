@@ -1,75 +1,60 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState }  from 'react';
 import TextField from '../TextField'
 import cl from './index.module.css'
 import CheckBox from '../CheckBox';
 import Button from '../Button';
 
 const TodoItemForm = ({item, changeTodo}) => {
-  const [header, setHeader] = useState(item.header);
-  const [content, setContent] = useState(item.content);
-  const [complete, setComplete] = useState(item.isComplete);
-  const [pin, setPin] = useState(item.isPin);
+  const [todo, setTodo] = useState({...item});
 
-  // useEffect(() => {
-  //   onChangeItem({
-  //     ...item, 
-  //     header: header, 
-  //     content: content, 
-  //     isComplete: complete
-  //   });
-  // }, [header, content, complete])
+  const handleChange = (value, key) => {
+    setTodo({...todo, [key]: value});
+  };
 
-  const saveTodo = () => {
-    changeTodo({
-      ...item, 
-      header: header, 
-      content: content, 
-      isComplete: complete,
-      isPin: pin
-    });
+  const saveTodo = (e) => {
+    e.preventDefault();
+    changeTodo({...todo});
   };
 
   return (
-    <form onSubmit={e => {e.preventDefault(); saveTodo()}} className={cl.todoForm}>
+    <form onSubmit={saveTodo} className={cl.todoForm}>
       <TextField 
-        name="todo_header" 
-        value={header} 
+        name="header" 
         title="Header"
-        onChange={e => setHeader(e.target.value)}
         className={cl.todo_info_field}
+        value={todo.header}
+        onChange={e => handleChange(e.target.value, "header")}
       />
       <TextField 
-        name="todo_content" 
-        value={content} 
+        name="content" 
         title="Content"
-        onChange={e => setContent(e.target.value)}
         className={cl.todo_info_field}
-        onKeyUp={e => e.key === "Enter" && saveTodo()}
+        value={todo.content}
+        onChange={e => handleChange(e.target.value, "content")}
       />
       <div className={cl.todoCheckboxes}>
-        <div className={cl.todoCheckbox}>
-          <CheckBox 
-            className={cl.todo_info_checkbox}
-            check={complete}
-            setCheck={e => setComplete(e.target.checked)}
-          />
-          <div className={cl.todoCheck_label}>Complete</div>
-        </div>
-        <div className={cl.todoCheckbox}>
-          <CheckBox 
-            className={cl.todo_info_checkbox}
-            check={pin}
-            setCheck={e => setPin(e.target.checked)}
-          />
-          <div className={cl.todoCheck_label}>Pin</div>
-        </div>
+        <CheckBox 
+          className={cl.todo_info_checkbox}
+          name="isComplete"
+          id="complete"
+          value="Complete"
+          check={todo.isComplete}
+          onChange={e => handleChange(e.target.checked, "isComplete")}
+        />
+        <CheckBox 
+          className={cl.todo_info_checkbox}
+          name="isPin"
+          id="pin"
+          value="Pin"
+          check={todo.isPin}
+          onChange={e => handleChange(e.target.checked, "isPin")}
+        />
       </div>
       <Button 
         className={cl.todo_info_save}
-        onClick={_ => saveTodo()}
-      >
-        Save
-      </Button>
+        value="Save"
+        type="submit"
+      />
     </form>
   );
 };

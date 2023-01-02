@@ -51,9 +51,12 @@
 }
 .todo_panel_button {
   height: auto !important;
-  width: 10% !important;
+  width: 13% !important;
   border-radius: 0 !important;
+  border: none;
   border-bottom: 1px solid var(--panel-border-color);
+  background-color: transparent;
+  padding: 0 !important;
 }
 
 .todo_panel_button:hover {

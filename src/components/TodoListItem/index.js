@@ -19,13 +19,13 @@ const TodoListItem = ({ item, onChangeStatus, onRemove, onClick, onPin }) => {
         className={["todo_pin_btn", item.isPin ? "active" : ""].join(' ')}
         onClick={e => {e.stopPropagation(); onPin(item.id)}}
       >
-        <PinIcon className="todo_pin_icon"/>
+        <PinIcon className="icon"/>
       </Button>
       <Button 
         className="cross_button" 
         onClick={e => {e.stopPropagation(); onRemove(item.id); }}
       >
-        <CrossIcon />
+        <CrossIcon className="icon"/>
       </Button>
     </div>
   );

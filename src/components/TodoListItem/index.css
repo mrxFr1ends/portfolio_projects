@@ -31,6 +31,15 @@
   opacity: 0.4 !important;
 }
 
+.todo_pin_btn, .cross_button {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+
 .todo_pin_btn {
   margin-right: 5%;
   stroke: var(--main-color);
@@ -44,6 +53,10 @@
 }
 .todo_pin_btn.active {
   fill: var(--main-color);
+}
+.icon {
+  width: 100%;
+  height: 100%;
 }
 
 

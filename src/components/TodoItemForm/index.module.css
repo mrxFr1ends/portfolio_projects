@@ -13,21 +13,16 @@
 }
 
 .todo_info_checkbox {
-  border-color: var(--todo-checkbox-border-color);
+  border-color: var(--todo-checkbox-border-color) !important;
 }
 .todo_info_checkbox:hover {
-  border-color: var(--todo-checkbox-border-color-hover);
+  border-color: var(--todo-checkbox-border-color-hover) !important;
 }
 
-.todoCheckboxes, .todoCheckbox {
+.todoCheckboxes {
   display: flex;
   justify-content:space-around;
   align-items: center;
-}
-
-.todoCheck_label {
-  margin-left: 10px;
-  font-size: 15px;
 }
 
 .todo_info_save {
@@ -38,6 +33,7 @@
   background-color: transparent;
   border: 1px solid var(--main-color);
 }
+
 .todo_info_save:hover {
   background-color: var(--main-color-hover);
 }
