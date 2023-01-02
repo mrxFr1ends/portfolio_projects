@@ -13,10 +13,11 @@
 }
 
 .todo_info_checkbox {
-  border-color: var(--todo-checkbox-border-color) !important;
+  border-color: var(--todo-checkbox-border-color);
 }
-.todo_info_checkbox:hover {
-  border-color: var(--todo-checkbox-border-color-hover) !important;
+.todo_info_checkbox:hover:not(.todo_info_checkbox:checked),
+.todo_info_checkbox:focus:not(.todo_info_checkbox:checked) {
+  border-color: var(--todo-checkbox-border-color-hover);
 }
 
 .todoCheckboxes {

@@ -1,7 +1,12 @@
 import { useState } from 'react';
 
-const useTodoState = (initialValue) => {
-  const [todos, setTodos] = useState(initialValue);
+const getSavedTodos = () => {
+  const savedTodos = localStorage.getItem("todos");
+  return savedTodos ? JSON.parse(savedTodos) : [];
+};
+
+const useTodoState = () => {
+  const [todos, setTodos] = useState(getSavedTodos());
 
   return {
     todos,

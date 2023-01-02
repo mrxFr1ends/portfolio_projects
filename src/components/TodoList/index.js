@@ -11,7 +11,7 @@ const TodoList = ({todos, onChangeStatus, onRemove, onSelect, onPin}) => {
           <CSSTransition key={item.id} timeout={300} classNames="todos_item">
             <TodoListItem
               item={item}
-              onChangeStatus={onChangeStatus}
+              onComplete={onChangeStatus}
               onRemove={onRemove}
               onClick={_ => onSelect(item)}
               key={item.id}

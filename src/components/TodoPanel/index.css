@@ -1,0 +1,37 @@
+.todo_panel {
+  display: flex;
+  align-content: stretch;
+}
+.todo_panel_field {
+  color: var(--main-color) !important;
+  border-color: var(--panel-border-color) !important;
+  transition: 0.3s border-color ease-in !important;
+}
+.todo_panel_field:focus {
+  background-color: var(--panel-field-backgrond-color-focus) !important;
+  border-color: #03a9f4 !important;
+}
+.todo_panel_button {
+  height: auto !important;
+  width: 72px !important;
+  border-radius: 0 !important;
+  border: none;
+  border-bottom: 1px solid var(--panel-border-color);
+  background-color: transparent;
+  padding: 0 !important;
+}
+
+.todo_panel_button:hover {
+  border-color: #03a9f4;
+  background-color: var(--main-color-hover);
+}
+.todo_panel_button:hover .todo_panel_icon {
+  opacity: 0.7;
+}
+
+.todo_panel_icon {
+  width: 50%;
+  fill: var(--main-color);
+  opacity: 0.5;
+  transition: 0.3s all ease-in;
+}

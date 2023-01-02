@@ -1,4 +1,4 @@
-.todos_item {
+.todo__item {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -7,66 +7,28 @@
   cursor: pointer;
   padding: 0 5%;
 }
-.todos_item:hover {
+.todo__item:hover {
   background-color: var(--main-color-hover);
 }
-
-.todos_item:hover .cross_button {
+.todo__item:hover .todo__remove {
   opacity: 0.2;
 }
 
-.todoComplete {
+.todo__complete {
   border-color: var(--todo-checkbox-border-color);
 }
-.todoComplete:hover {
+.todo__complete:hover:not(.todo__complete:checked),
+.todo__complete:focus:not(.todo__complete:checked) {
   border-color: var(--todo-checkbox-border-color-hover);
 }
 
-.cross_button {
-  opacity: 0;
-  fill: var(--main-color);
-}
-.cross_button:hover {
-  fill: red;
-  opacity: 0.4 !important;
-}
-
-.todo_pin_btn, .cross_button {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  border: none;
-  background-color: transparent;
-  padding: 0;
-}
-
-.todo_pin_btn {
-  margin-right: 5%;
-  stroke: var(--main-color);
-  stroke-width: 2;
-  fill: transparent;
-  transition: 0.3s all ease-in;
-  opacity: 0.4;
-}
-.todo_pin_btn:hover {
-  opacity: 0.6;
-}
-.todo_pin_btn.active {
-  fill: var(--main-color);
-}
-.icon {
-  width: 100%;
-  height: 100%;
-}
-
-
-.todoText_strike {
+.todo__title {
   position: relative;
   white-space: nowrap;
   margin-right: auto;
   margin-left: 5%;
 }
-.todoText_strike:after {
+.todo__title:after {
   transition: all 0.3s ease-in;
   border-top: 2px solid var(--main-color);
   position: absolute;
@@ -76,15 +38,48 @@
   left: 0;
   width: 0%;
 }
-.todoText_strike.active:after {
+.todo__title.active:after {
   width: 100%;
 }
 
+.todo__pin, .todo__remove {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+
+.todo__pin {
+  margin-right: 5%;
+  stroke: var(--main-color);
+  stroke-width: 2;
+  fill: transparent;
+  transition: 0.3s all ease-in;
+  opacity: 0.4;
+}
+.todo__pin:hover {
+  opacity: 0.6;
+}
+.todo__pin.active {
+  fill: var(--main-color);
+}
+
+.todo__remove {
+  opacity: 0;
+  fill: var(--main-color);
+}
+.todo__remove:hover {
+  fill: red;
+  opacity: 0.4 !important;
+}
+
 @media screen and (max-width: 600px) {
-  .todos_item:hover .cross_button {
+  .todo__item:hover .todo__remove {
     opacity: 0.4;
   }
-  .cross_button {
+  .todo__remove {
     opacity: 0.4;
     fill: red;
   }

@@ -7,8 +7,9 @@ import Button from '../Button';
 const TodoItemForm = ({item, changeTodo}) => {
   const [todo, setTodo] = useState({...item});
 
-  const handleChange = (value, key) => {
-    setTodo({...todo, [key]: value});
+  const handleChange = (event) => {
+    const {type, name, value, checked} = event.target;
+    setTodo({...todo, [name]: type === 'checkbox' ? checked : value});
   };
 
   const saveTodo = (e) => {
@@ -23,14 +24,14 @@ const TodoItemForm = ({item, changeTodo}) => {
         title="Header"
         className={cl.todo_info_field}
         value={todo.header}
-        onChange={e => handleChange(e.target.value, "header")}
+        onChange={handleChange}
       />
       <TextField 
         name="content" 
         title="Content"
         className={cl.todo_info_field}
         value={todo.content}
-        onChange={e => handleChange(e.target.value, "content")}
+        onChange={handleChange}
       />
       <div className={cl.todoCheckboxes}>
         <CheckBox 
@@ -39,7 +40,7 @@ const TodoItemForm = ({item, changeTodo}) => {
           id="complete"
           value="Complete"
           check={todo.isComplete}
-          onChange={e => handleChange(e.target.checked, "isComplete")}
+          onChange={handleChange}
         />
         <CheckBox 
           className={cl.todo_info_checkbox}
@@ -47,7 +48,7 @@ const TodoItemForm = ({item, changeTodo}) => {
           id="pin"
           value="Pin"
           check={todo.isPin}
-          onChange={e => handleChange(e.target.checked, "isPin")}
+          onChange={handleChange}
         />
       </div>
       <Button 

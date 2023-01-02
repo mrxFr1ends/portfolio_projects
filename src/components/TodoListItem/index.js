@@ -2,31 +2,36 @@ import React, { memo } from 'react';
 import CheckBox from '../CheckBox';
 import Button from '../Button';
 import { CrossIcon, PinIcon } from '../../icons/Icons';
-import './index.css'
+import './index.css';
 
-const TodoListItem = ({ item, onChangeStatus, onRemove, onClick, onPin }) => {
+const TodoListItem = ({ item, key, onClick, onComplete, onPin, onRemove }) => {
+  const handleInputClick = (event, func) => {
+    event.stopPropagation();
+    if (func !== undefined)
+      func();
+  };
+
   return (
-    <div className="todos_item" onClick={onClick}>
+    <div className="todo__item" onClick={onClick} key={key}>
       <CheckBox 
         check={item.isComplete} 
-        setCheck={_ => onChangeStatus(item.id)}
-        onClick={e => e.stopPropagation()} 
-        className="todoComplete"/>
-      <span className={["todoText_strike", item.isComplete ? "active" : ""].join(' ')}>
+        onChange={_ => onComplete(item.id)}
+        onClick={handleInputClick}
+        className="todo__complete"
+      />
+      <span className={"todo__title " + (item.isComplete ? "active" : "")}>
         {item.header}
       </span>
       <Button 
-        className={["todo_pin_btn", item.isPin ? "active" : ""].join(' ')}
-        onClick={e => {e.stopPropagation(); onPin(item.id)}}
-      >
-        <PinIcon className="icon"/>
-      </Button>
+        className={"todo__pin " + (item.isPin ? "active" : "")}
+        onClick={e => handleInputClick(e, onPin(item.id))}
+        value={<PinIcon/>}
+      />
       <Button 
-        className="cross_button" 
-        onClick={e => {e.stopPropagation(); onRemove(item.id); }}
-      >
-        <CrossIcon className="icon"/>
-      </Button>
+        className="todo__remove" 
+        onClick={e => handleInputClick(e, onRemove(item.id))}
+        value={<CrossIcon/>}
+      />
     </div>
   );
 };
