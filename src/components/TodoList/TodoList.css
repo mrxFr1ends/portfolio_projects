@@ -1,4 +1,4 @@
-.todos_list {
+.todo_list {
   border-bottom-left-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
   overflow-x: hidden;
@@ -6,37 +6,37 @@
   height: 40vh;
   position: relative;
 }
-.todos_list::-webkit-scrollbar {
+.todo_list::-webkit-scrollbar {
   width: 5px;
 }
-.todos_list::-webkit-scrollbar-track {
+.todo_list::-webkit-scrollbar-track {
   background: transparent;
 }
-.todos_list::-webkit-scrollbar-thumb {
+.todo_list::-webkit-scrollbar-thumb {
   background-color: var(--scrollbar-background-color);
   border-radius: 20px;
 }
-.todos_list::-webkit-scrollbar-thumb:hover {
+.todo_list::-webkit-scrollbar-thumb:hover {
   background-color: var(--scrollbar-background-color-hover);
 }
 
-.todos_item-enter {
+.todo_list-enter {
   opacity: 0.01;
 }
-.todos_item-enter-active {
+.todo_list-enter-active {
   opacity: 1;
   transition: opacity 500ms ease-in;
 }
-.todos_item-exit {
+.todo_list-exit {
   opacity: 1;
 }
-.todos_item-exit-active {
+.todo_list-exit-active {
   opacity: 0.01;
   transition: opacity 300ms ease-in;
 }
 
 @media screen and (max-width: 600px) {
-  .todos_list {
+  .todo_list {
     height: calc(100% - 58px);
   }
 }

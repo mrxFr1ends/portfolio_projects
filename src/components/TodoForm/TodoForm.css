@@ -1,32 +1,32 @@
-.todoForm > *:not(:last-child) {
+.todo_form > *:not(:last-child) {
   margin-bottom: 20px;
 }
 
-.todo_info_field {
+.todo_form__field {
   color: var(--main-color) !important;
   border-color: var(--panel-border-color) !important;
   transition: 0.3s border-color ease-in !important;
 }
-.todo_info_field:focus {
+.todo_form__field:focus {
   background-color: var(--panel-field-backgrond-color-focus) !important;
   border-color: #03a9f4 !important;
 }
 
-.todo_info_checkbox {
+.todo_form__checkbox {
   border-color: var(--todo-checkbox-border-color);
 }
-.todo_info_checkbox:hover:not(.todo_info_checkbox:checked),
-.todo_info_checkbox:focus:not(.todo_info_checkbox:checked) {
+.todo_form__checkbox:hover:not(.todo_form__checkbox:checked),
+.todo_form__checkbox:focus:not(.todo_form__checkbox:checked) {
   border-color: var(--todo-checkbox-border-color-hover);
 }
 
-.todoCheckboxes {
+.todo_form__row {
   display: flex;
-  justify-content:space-around;
+  justify-content: space-around;
   align-items: center;
 }
 
-.todo_info_save {
+.todo_form__save {
   width: 100%;
   height: 100%;
   color: var(--main-color);
@@ -35,6 +35,6 @@
   border: 1px solid var(--main-color);
 }
 
-.todo_info_save:hover {
+.todo_form__save:hover {
   background-color: var(--main-color-hover);
 }

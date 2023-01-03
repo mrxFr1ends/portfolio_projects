@@ -1,0 +1,19 @@
+.modal-enter {
+  opacity: 0;
+}
+.modal-enter-active {
+  opacity: 1;
+  transition: opacity 150ms ease-in;
+}
+.modal-exit {
+  opacity: 1;
+}
+.modal-exit-active {
+  opacity: 0;
+  transition: opacity 150ms ease-in;
+}
+
+.modal_window {
+  background-color: var(--main-todo-background-color) !important;
+  box-shadow: var(--main-todo-box-shadow) !important;
+}

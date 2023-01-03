@@ -1,11 +1,10 @@
-import React from 'react';
-import cl from './index.module.css'
+import cl from "./index.module.css";
 
-const TextField = ({value, onChange, title, name, onKeyUp, className}) => {
+const TextField = ({ value, onChange, title, name, onKeyUp, className }) => {
   return (
     <div className={cl.text_field}>
       <input
-        className={[className, cl.text_field__input].join(' ')}
+        className={[className, cl.text_field__input].join(" ")}
         type="text"
         name={name}
         placeholder=" "
@@ -13,9 +12,7 @@ const TextField = ({value, onChange, title, name, onKeyUp, className}) => {
         onChange={onChange}
         onKeyUp={onKeyUp}
       />
-      <label className={cl.text_field__label}>
-        {title}
-      </label>
+      <label className={cl.text_field__label}>{title}</label>
     </div>
   );
 };

@@ -8,52 +8,6 @@
   transition: 0.3s all ease-in;
 }
 
-.modal-enter {
-  opacity: 0;
-}
-.modal-enter-active {
-  opacity: 1;
-  transition: opacity 150ms ease-in;
-}
-.modal-exit {
-  opacity: 1;
-}
-.modal-exit-active {
-  opacity: 0;
-  transition: opacity 150ms ease-in;
-}
-
-.modal_window {
-  background-color: var(--main-todo-background-color) !important;
-  box-shadow: var(--main-todo-box-shadow) !important;
-}
-
-.swap_theme {
-  position: fixed;
-  left: calc(100% - 70px);
-  top: calc(100% - 70px);
-  width: 50px;
-  height: 50px;
-  border: 1px solid rgba(0,0,0,0.4);
-  background-color: var(--swap-background-color);
-  border-radius: 50%;
-  padding: 5px;
-  cursor: pointer;
-  transition: 0.3s all ease-in;
-}
-.swap_theme_icon {
-  fill: var(--swap-fill-color);
-  transition: 0.3s all ease-in;
-  width: 100%;
-}
-.swap_theme:hover {
-  border-color: rgba(0,0,0,0.6);
-  background-color: var(--swap-background-color-hover);
-}
-.swap_theme:hover .swap_theme_icon {
-  fill: var(--swap-fill-color-hover);
-}
-
 @media screen and (max-width: 992px) {
   .container {
     width: 80%;

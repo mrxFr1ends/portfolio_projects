@@ -13,6 +13,9 @@
 .todo__item:hover .todo__remove {
   opacity: 0.2;
 }
+.todo__item:hover .todo__pin:not(.active) {
+  opacity: 0.4;
+}
 
 .todo__complete {
   border-color: var(--todo-checkbox-border-color);
@@ -57,13 +60,14 @@
   stroke-width: 2;
   fill: transparent;
   transition: 0.3s all ease-in;
-  opacity: 0.4;
+  opacity: 0;
 }
 .todo__pin:hover {
-  opacity: 0.6;
+  opacity: 0.6 !important;
 }
 .todo__pin.active {
   fill: var(--main-color);
+  opacity: 0.4;
 }
 
 .todo__remove {
@@ -76,11 +80,15 @@
 }
 
 @media screen and (max-width: 600px) {
-  .todo__item:hover .todo__remove {
+  .todo__pin {
     opacity: 0.4;
   }
   .todo__remove {
     opacity: 0.4;
     fill: red;
+  }
+  .todo__item:hover .todo__remove,
+  .todo__item:hover .todo__pin:not(.active) {
+    opacity: 0.4;
   }
 }
