@@ -3,6 +3,7 @@ import Button from "../../Button";
 import { CrossIcon, PinIcon } from "../../../icons/Icons";
 import { useTodos } from "../../../providers/TodoProvider";
 import "./TodoItem.css";
+import { memo } from "react";
 
 const TodoItem = ({ item, key, onClick }) => {
   const { removeTodo, changeTodo } = useTodos();
@@ -24,10 +25,11 @@ const TodoItem = ({ item, key, onClick }) => {
   return (
     <div className="todo__item" onClick={onClick} key={key}>
       <CheckBox
-        check={item.done}
+        checked={item.done}
         onChange={_ => toggleDoneTodo()}
         onClick={e => e.stopPropagation()}
         className="todo__complete"
+        title={item.done ? "Отменить выполнение" : "Выполнить"}
       />
       <span className={"todo__title " + (item.done ? "active" : "")}>
         {item.title}
@@ -36,14 +38,16 @@ const TodoItem = ({ item, key, onClick }) => {
         className={"todo__pin " + (item.pin ? "active" : "")}
         onClick={togglePinTodo}
         value={<PinIcon />}
+        title="Прикрепить"
       />
       <Button
         className="todo__remove"
         onClick={removeTodoClick}
         value={<CrossIcon />}
+        title="Удалить"
       />
     </div>
   );
 };
 
-export default TodoItem;
+export default memo(TodoItem);

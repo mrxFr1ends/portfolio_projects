@@ -42,7 +42,7 @@ const TodoForm = ({ item, onSubmit }) => {
           name="done"
           id="done"
           value="Done"
-          check={todo.done}
+          checked={todo.done}
           onChange={handleChange}
         />
         <CheckBox
@@ -50,7 +50,7 @@ const TodoForm = ({ item, onSubmit }) => {
           name="pin"
           id="pin"
           value="Pin"
-          check={todo.pin}
+          checked={todo.pin}
           onChange={handleChange}
         />
       </div>

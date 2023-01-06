@@ -1,20 +1,13 @@
-import { useState } from "react";
 import { useTodos } from "../../providers/TodoProvider";
-import TextField from "../TextField";
 import Button from "../Button";
 import { TaskCompleteIcon, TaskRemoveIcon } from "../../icons/Icons";
+import TodoPanelField from "./TodoPanelField";
 import "./TodoPanel.css";
+import TodoBurgerMenu from "./TodoBurgerMenu";
+import { useMemo } from "react";
 
 const TodoPanel = () => {
-  const [todoTitle, setTodoTitle] = useState("");
   const { todos, setTodos, addTodo } = useTodos();
-
-  const handleAddTodo = event => {
-    if (event.key === "Enter" && todoTitle !== "") {
-      addTodo(todoTitle);
-      setTodoTitle("");
-    }
-  };
 
   const completeAllTodos = () => {
     setTodos(
@@ -25,28 +18,32 @@ const TodoPanel = () => {
   };
 
   const removeCompleteTodos = () => {
-    setTodos(todos.filter(todo => todo.isComplete === false));
+    setTodos(todos.filter(todo => todo.done === false));
   };
+
+  const countingTodos = useMemo(() => {
+    let done = 0;
+    for (const todo of todos)
+      done += todo.done
+    return [todos.length, done, todos.length - done];
+  }, [todos]);
 
   return (
     <div className="todo_panel">
-      <TextField
-        name="todo"
-        value={todoTitle}
-        title="Todo"
-        onChange={e => setTodoTitle(e.target.value)}
-        onKeyUp={handleAddTodo}
-        className="todo_panel__field"
-      />
-      <Button className="todo_panel__button" onClick={_ => completeAllTodos()}>
-        <TaskCompleteIcon className="todo_panel__icon" />
-      </Button>
+      <TodoPanelField addTodo={addTodo} />
       <Button
         className="todo_panel__button"
-        onClick={_ => removeCompleteTodos()}
-      >
-        <TaskRemoveIcon className="todo_panel__icon" />
-      </Button>
+        onClick={completeAllTodos}
+        value={<TaskCompleteIcon className="todo_panel__icon" />}
+        title="Выполнить всё"
+      />
+      <Button
+        className="todo_panel__button"
+        onClick={removeCompleteTodos}
+        value={<TaskRemoveIcon className="todo_panel__icon" />}
+        title="Удалить выполненные"
+      />
+      <TodoBurgerMenu countTodos={countingTodos}/>
     </div>
   );
 };

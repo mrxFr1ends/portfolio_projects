@@ -1,11 +1,11 @@
 .todo_list {
   border-bottom-left-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
-  overflow-x: hidden;
   overflow-y: overlay;
+  overflow-x: hidden;
   height: 40vh;
-  position: relative;
 }
+
 .todo_list::-webkit-scrollbar {
   width: 5px;
 }
@@ -20,19 +20,23 @@
   background-color: var(--scrollbar-background-color-hover);
 }
 
-.todo_list-enter {
+.todo__item-enter {
   opacity: 0.01;
+  margin-left: 100%;
 }
-.todo_list-enter-active {
+.todo__item-enter-active {
   opacity: 1;
-  transition: opacity 500ms ease-in;
+  margin-left: 0;
+  transition: opacity .3s ease-in, margin-left .3s ease-in;
 }
-.todo_list-exit {
+.todo__item-exit {
   opacity: 1;
+  margin-left: 0;
 }
-.todo_list-exit-active {
+.todo__item-exit-active {
   opacity: 0.01;
-  transition: opacity 300ms ease-in;
+  margin-left: -100%;
+  transition: opacity 0.3s ease-in, margin-left 0.3s ease-in;
 }
 
 @media screen and (max-width: 600px) {

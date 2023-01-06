@@ -8,10 +8,10 @@ html[data-theme='dark'] {
   --panel-border-color: rgb(116, 116, 116);
   --todo-checkbox-border-color: rgb(178, 175, 175);
   --todo-checkbox-border-color-hover: rgb(250, 251, 250);
-  --swap-background-color: rgb(241, 241, 241);
-  --swap-background-color-hover: rgb(153, 153, 153);
-  --swap-fill-color: rgb(31, 31, 31, 0.6);
-  --swap-fill-color-hover: rgb(237, 237, 237);
+  --swap-background-color: #313131;
+  --swap-background-color-hover: rgb(241, 241, 241);
+  --swap-fill-color: rgb(236, 232, 232);
+  --swap-fill-color-hover: #313131;
   --scrollbar-background-color: rgba(63, 63, 63, 0.5);
   --scrollbar-background-color-hover: rgba(63, 63, 63, 0.7);
 }
@@ -26,10 +26,10 @@ html[data-theme='light'] {
   --panel-border-color: rgb(187, 186, 186);
   --todo-checkbox-border-color: rgba(0,0,0,0.2);
   --todo-checkbox-border-color-hover: rgba(0,0,0,0.4);
-  --swap-background-color: rgb(113, 111, 111);
-  --swap-background-color-hover: rgba(0,0,0,0.1);
-  --swap-fill-color: rgb(237, 237, 237);
-  --swap-fill-color-hover: rgb(31, 31, 31, 0.5);
+  --swap-background-color: rgb(241, 241, 241);
+  --swap-background-color-hover: #434242;
+  --swap-fill-color: rgb(144, 144, 144);
+  --swap-fill-color-hover: rgb(237, 237, 237);
   --scrollbar-background-color: rgba(0,0,0,0.1);
   --scrollbar-background-color-hover: rgba(0,0,0,0.15);
 }

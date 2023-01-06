@@ -1,20 +1,21 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import TodoModal from "./components/TodoModal/TodoModal";
 import TodoList from "./components/TodoList/TodoList";
 import TodoPanel from "./components/TodoPanel/TodoPanel";
 import SwapTheme from "./components/SwapTheme/SwapTheme";
 import { useTodos } from "./providers/TodoProvider";
 import "./App.css";
+import FilterProvider from "./providers/FilterProvider";
 
 function App() {
   const [openModal, setOpenModal] = useState(false);
   const [selectedTodo, setSelectedTodo] = useState({});
   const { todos } = useTodos();
 
-  const selectTodo = item => {
+  const selectTodo = useCallback(item => {
     setSelectedTodo(item);
     setOpenModal(true);
-  };
+  }, []);
 
   const sortedTodos = () => {
     return [...todos].sort((left, right) => {
@@ -30,8 +31,10 @@ function App() {
         setOpenModal={setOpenModal}
         todo={selectedTodo}
       />
-      <TodoPanel />
-      <TodoList todos={sortedTodos()} onSelect={selectTodo} />
+      <FilterProvider>
+        <TodoPanel />
+        <TodoList todos={sortedTodos()} onSelect={selectTodo} />
+      </FilterProvider>
       <SwapTheme />
     </div>
   );
