@@ -5,8 +5,8 @@ export const useFilter = () => useContext(FilterContext);
 
 export const FILTERS = {
   All: "all",
-  Done: "done",
-  NotDone: "notDone",
+  Completed: "completed",
+  NotCompleted: "notCompleted",
 };
 
 export default function FilterProvider({ children }) {

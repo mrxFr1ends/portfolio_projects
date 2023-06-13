@@ -1,9 +1,16 @@
-import ModalWindow from "../ModalWindow";
+import ModalWindow from "../generic/ModalWindow";
 import TodoForm from "../TodoForm/TodoForm";
 import { CSSTransition } from "react-transition-group";
 import "./TodoModal.css";
+import { ITodo } from "../../types/todo";
 
-const TodoModal = ({ todo, openModal, setOpenModal }) => {
+interface TodoModalProps {
+  todo: ITodo | null;
+  openModal: boolean;
+  setOpenModal: (open: boolean) => void;
+}
+
+const TodoModal: React.FC<TodoModalProps> = ({ todo, openModal, setOpenModal }) => {
   return (
     <CSSTransition
       in={openModal}
@@ -12,7 +19,7 @@ const TodoModal = ({ todo, openModal, setOpenModal }) => {
       unmountOnExit
     >
       <ModalWindow setVisible={setOpenModal} className="modal_window">
-        <TodoForm item={todo} onSubmit={_ => setOpenModal(false)} />
+        {todo === null ? null : <TodoForm item={todo} onSubmit={(_: void) => setOpenModal(false)} />}
       </ModalWindow>
     </CSSTransition>
   );

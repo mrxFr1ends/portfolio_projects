@@ -1,7 +1,7 @@
 import cl from "./index.module.css";
 
-const Button = ({ className, value, children, type="button", ...otherProps }) => {
-  const content = children ? children : value;
+const Button = ({ className, value, type="button", ...otherProps }) => {
+  const content = otherProps.children ? otherProps.children : value;
   return (
     <button
       type={type}

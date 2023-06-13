@@ -1,7 +1,7 @@
 import cl from "./index.module.css";
 
-const CheckBox = ({ className, children, value, id, ...otherProps }) => {
-  const content = children ? children : value;
+const CheckBox = ({ className, value, id, ...otherProps }) => {
+  const content = otherProps.children ? otherProps.children : value;
   return (
     <div className={cl.checkbox}>
       <input
