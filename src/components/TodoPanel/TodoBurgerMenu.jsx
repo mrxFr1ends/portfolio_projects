@@ -12,17 +12,17 @@ import { useFilter, FILTERS } from "../../providers/FilterProvider";
 const MenuItems = [
   {
     title: "Показать всё",
-    icon: <ShowAllIcon className="todo_panel__menu_icon" />,
+    icon: ShowAllIcon,
     filter: FILTERS.All,
   },
   {
     title: "Показать выполненные",
-    icon: <ShowCompleteIcon className="todo_panel__menu_icon" />,
+    icon: ShowCompleteIcon,
     filter: FILTERS.Done,
   },
   {
     title: "Показать невыполненные",
-    icon: <ShowIncompleteIcon className="todo_panel__menu_icon" />,
+    icon: ShowIncompleteIcon,
     filter: FILTERS.NotDone,
   },
 ];
@@ -69,7 +69,7 @@ const TodoBurgerMenu = ({ countTodos }) => {
             title={item.title}
             onClick={_ => handleClick(item.filter)}
           >
-            {item.icon}
+            <item.icon className="todo_panel__menu_icon" />
             <div className="todo_panel__menu_count">
               {countTodos[index]}
             </div>

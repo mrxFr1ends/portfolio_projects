@@ -1,13 +1,11 @@
 import CheckBox from "../../CheckBox";
 import Button from "../../Button";
 import { CrossIcon, PinIcon } from "../../../icons/Icons";
-import { useTodos } from "../../../providers/TodoProvider";
 import "./TodoItem.css";
 import { memo } from "react";
+import { deepEqual } from "../../../utils";
 
-const TodoItem = ({ item, key, onClick }) => {
-  const { removeTodo, changeTodo } = useTodos();
-
+const TodoItem = ({ item, key, onClick, removeTodo, changeTodo }) => {
   const toggleDoneTodo = () => {
     changeTodo(item.id, { done: !item.done });
   };
@@ -50,4 +48,4 @@ const TodoItem = ({ item, key, onClick }) => {
   );
 };
 
-export default memo(TodoItem);
+export default memo(TodoItem, (prev, next) => deepEqual(prev.item, next.item));

@@ -4,6 +4,7 @@ import CheckBox from "../CheckBox";
 import Button from "../Button";
 import { useTodos } from "../../providers/TodoProvider";
 import "./TodoForm.css";
+import { deepEqual } from "../../utils";
 
 const TodoForm = ({ item, onSubmit }) => {
   const [todo, setTodo] = useState({ ...item });
@@ -16,7 +17,8 @@ const TodoForm = ({ item, onSubmit }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    changeTodo(item.id, todo);
+    if (!deepEqual(item, todo))
+      changeTodo(item.id, todo);
     onSubmit();
   };
 
