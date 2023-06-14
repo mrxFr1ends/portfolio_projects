@@ -11,7 +11,7 @@ const TodoPanelField: React.FC<TodoPanelFieldProps> = ({ addTodo }) => {
 
   const handleAddTodo = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter" && todoTitle !== "") {
-      addTodo({title: '123'});
+      addTodo({title: todoTitle});
       setTodoTitle("");
     }
   };

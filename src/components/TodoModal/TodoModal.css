@@ -16,4 +16,17 @@
 .modal_window {
   background-color: var(--main-todo-background-color) !important;
   box-shadow: var(--main-todo-box-shadow) !important;
+  width: 35%;
+}
+
+@media screen and (max-width: 992px) {
+  .modal_window {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .modal_window {
+    width: 80%;
+  }
 }

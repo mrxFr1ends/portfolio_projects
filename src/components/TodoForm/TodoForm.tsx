@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useActions } from "../../hooks/useActions";
 import { ITodo } from "../../types/todo";
 import { deepEqual } from "../../utils";
-import Button from "../generic/Button/old_index";
+import Button from "../generic/Button";
 import CheckBox from "../generic/CheckBox";
 import TextField from "../generic/TextField";
 import "./TodoForm.css";
@@ -31,14 +31,14 @@ const TodoForm: React.FC<TodoFormProps> = ({ item, onSubmit }) => {
         <form onSubmit={handleSubmit} className="todo_form">
             <TextField
                 name="title"
-                title="Title"
+                title="Заголовок"
                 className="todo_form__field"
                 value={todo.title}
                 onChange={handleChange}
             />
             <TextField
                 name="detail"
-                title="Details"
+                title="Детали"
                 className="todo_form__field"
                 value={todo.detail}
                 onChange={handleChange}
@@ -48,7 +48,7 @@ const TodoForm: React.FC<TodoFormProps> = ({ item, onSubmit }) => {
                     className="todo_form__checkbox"
                     name="completed"
                     id="completed"
-                    value="Done"
+                    value="Выполнено"
                     checked={todo.completed}
                     onChange={handleChange}
                 />
@@ -56,12 +56,12 @@ const TodoForm: React.FC<TodoFormProps> = ({ item, onSubmit }) => {
                     className="todo_form__checkbox"
                     name="pinned"
                     id="pinned"
-                    value="Pin"
+                    value="Закреплено"
                     checked={todo.pinned}
                     onChange={handleChange}
                 />
             </div>
-            <Button className="todo_form__save" value="Save" type="submit" />
+            <Button className="todo_form__save" value="Сохранить изменения" type="submit" />
         </form>
     );
 };

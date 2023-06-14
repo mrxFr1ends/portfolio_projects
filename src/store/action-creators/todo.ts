@@ -35,10 +35,20 @@ export const pinTodo = (id: string): TodoAction => ({type: TodoActionTypes.PIN_T
 
 export const setTodos = (todos: ITodo[]): TodoAction => ({type: TodoActionTypes.SET_TODOS, payload: {todos}});
 
+export const setLoadedTodos = (todos: ITodo[]): TodoAction => ({type: TodoActionTypes.SET_TODOS, payload: {todos}, meta: {isLoaded: true}});
+
+export const sortTodos = (todos: ITodo[]): TodoAction => ({type: TodoActionTypes.SORT_TODOS, payload: {todos}});
+
 export const loadTodos = () => {
     return (dispatch: Dispatch<TodoAction>) => {
         const todosString = localStorage.getItem('todos');
-        const todos: ITodo[] = todosString ? JSON.parse(todosString) : [];
-        dispatch(setTodos(todos));
+        let todos: ITodo[] = [];
+        try {
+            todos = todosString ? JSON.parse(todosString) : [];
+        }
+        catch (e) {}
+        finally {
+            dispatch(setLoadedTodos(todos));
+        }
     }
 };

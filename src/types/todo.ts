@@ -19,7 +19,8 @@ export enum TodoActionTypes {
     REMOVE_TODO = "REMOVE_TODO",
     PIN_TODO = "PIN_TODO",
     CHANGE_TODO = "CHANGE_TODO",
-    SET_TODOS = "SET_TODOS"
+    SET_TODOS = "SET_TODOS",
+    SORT_TODOS = "SORT_TODOS",
 }
 
 interface AddTodoAction {
@@ -50,6 +51,12 @@ interface PinTodoAction {
 interface SetTodosAction {
     type: TodoActionTypes.SET_TODOS;
     payload: {todos: ITodo[]};
+    meta?: { isLoaded: boolean; }
+}
+
+interface SortTodosAction {
+    type: TodoActionTypes.SORT_TODOS;
+    payload: {todos: ITodo[]};
 }
 
 export type TodoAction = 
@@ -58,4 +65,5 @@ export type TodoAction =
     RemoveTodoAction | 
     ToggleTodoAction | 
     PinTodoAction |
-    SetTodosAction;
+    SetTodosAction |
+    SortTodosAction;

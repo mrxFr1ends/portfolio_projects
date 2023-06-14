@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { TaskCompleteIcon, TaskRemoveIcon } from "../../icons/Icons";
-import Button from "../generic/Button/old_index";
+import Button from "../generic/Button";
 import TodoBurgerMenu from "./TodoBurgerMenu";
 import "./TodoPanel.css";
 import TodoPanelField from "./TodoPanelField";

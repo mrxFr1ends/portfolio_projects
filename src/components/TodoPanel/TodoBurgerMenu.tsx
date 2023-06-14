@@ -5,24 +5,25 @@ import {
     ShowCompleteIcon,
     ShowIncompleteIcon,
 } from "../../icons/Icons";
-import { FILTERS, useFilter } from "../../providers/FilterProvider";
+import { useFilter } from "../../providers/FilterProvider";
+import { FilterTypes } from "../../types/filter";
 import Button from "../generic/Button";
 
 const MenuItems = [
     {
         title: "Показать всё",
         icon: ShowAllIcon,
-        filter: FILTERS.All,
+        filter: FilterTypes.ALL,
     },
     {
         title: "Показать выполненные",
         icon: ShowCompleteIcon,
-        filter: FILTERS.Completed,
+        filter: FilterTypes.COMPLETED,
     },
     {
         title: "Показать невыполненные",
         icon: ShowIncompleteIcon,
-        filter: FILTERS.NotCompleted,
+        filter: FilterTypes.NOT_COMPLETED,
     },
 ];
 
@@ -34,7 +35,7 @@ const TodoBurgerMenu: React.FC<TodoBurgerMenuProps> = ({ countTodos }) => {
     const [open, setOpen] = useState(false);
     const { filter, setFilter } = useFilter();
 
-    const handleClick = (newFilter: string) => {
+    const handleClick = (newFilter: FilterTypes) => {
         setOpen(false);
         setFilter(newFilter);
     };

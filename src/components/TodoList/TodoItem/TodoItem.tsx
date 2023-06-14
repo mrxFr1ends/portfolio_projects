@@ -3,7 +3,7 @@ import { useActions } from "../../../hooks/useActions";
 import { CrossIcon, PinIcon } from "../../../icons/Icons";
 import { ITodo } from "../../../types/todo";
 import { deepEqual } from "../../../utils";
-import Button from "../../generic/Button/old_index";
+import Button from "../../generic/Button";
 import CheckBox from "../../generic/CheckBox";
 import "./TodoItem.css";
 

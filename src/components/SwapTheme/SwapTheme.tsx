@@ -1,16 +1,18 @@
 import useTheme from "../../hooks/useTheme";
 import { MoonIcon, SunIcon } from "../../icons/Icons";
-import Button from "../generic/Button/old_index";
+import { ThemeTypes } from "../../types/theme";
+import Button from "../generic/Button";
 import "./SwapTheme.css";
 
 const SwapTheme = () => {
-    const { theme, setTheme } = useTheme();
+    const { theme, toggleTheme } = useTheme();
     return (
         <Button
             className="swap_theme"
-            onClick={_ => setTheme(theme == "light" ? "dark" : "light")}
+            onClick={(_: any) => toggleTheme()}
+            title={`Поменять тему на ${(theme === ThemeTypes.LIGHT ? "темную" : "светлую")}`}
         >
-            {theme == "dark" ? (
+            {theme == ThemeTypes.DARK ? (
                 <SunIcon className="swap_theme__icon" />
             ) : (
                 <MoonIcon className="swap_theme__icon" />

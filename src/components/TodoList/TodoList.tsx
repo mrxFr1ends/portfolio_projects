@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { useFilter, FILTERS } from "../../providers/FilterProvider";
+import { useFilter } from "../../providers/FilterProvider";
 import TodoItem from "./TodoItem/TodoItem";
 import "./TodoList.css";
 import { ITodo } from "../../types/todo";
@@ -11,20 +11,13 @@ interface TodoListProps {
 }
 
 const TodoList: React.FC<TodoListProps> = ({ todos, onSelect }) => {
-    const { filter } = useFilter();
-
-    const filteredTodos = (() => {
-        if (filter === FILTERS.Completed) return todos.filter(todo => todo.completed);
-        if (filter === FILTERS.NotCompleted) return todos.filter(todo => !todo.completed);
-        return todos;
-    })();
-
+    const { filterTodos } = useFilter();
     const handleClick = useCallback((todo: ITodo) => onSelect(todo), []);
 
     return (
         <ul className="todo_list">
             <TransitionGroup>
-                {filteredTodos.map(todo => (
+                {filterTodos(todos).map(todo => (
                     <CSSTransition
                         key={todo.id}
                         timeout={300}

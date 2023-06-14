@@ -67,6 +67,15 @@ export const todoReducer = (
               ...state, 
                 todos: action.payload.todos
             };
+        case TodoActionTypes.SORT_TODOS:
+            return {
+                ...state, 
+                todos: 
+                    [...action.payload.todos].sort((left, right) => {
+                        const comp = Number(!left.pinned) - Number(!right.pinned);
+                        return comp ? comp : right.createdTimestamp - left.createdTimestamp;
+                    })
+            };
         default:
             return state;
     }
