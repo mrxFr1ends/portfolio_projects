@@ -1,7 +1,4 @@
 .todo__item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
   height: 50px;
   cursor: pointer;
@@ -11,91 +8,19 @@
 .todo__item:hover {
   background-color: var(--main-color-hover);
 }
-.todo__item:hover .todo__remove {
-  opacity: 0.2;
+
+.todo__pin:not(.active), .todo__remove {
+  transition: 0.3s opacity ease-in !important;
+  opacity: 0;
 }
+
+.todo__item:hover .todo__remove,
 .todo__item:hover .todo__pin:not(.active) {
-  opacity: 0.4;
-}
-
-.todo__complete {
-  border-color: var(--todo-checkbox-border-color);
-}
-.todo__complete:hover:not(.todo__complete:checked),
-.todo__complete:focus:not(.todo__complete:checked) {
-  border-color: var(--todo-checkbox-border-color-hover);
-}
-
-.todo__title {
-  position: relative;
-  white-space: nowrap;
-  margin-right: auto;
-  margin-left: 5%;
-  transition: color 0.3s ease-in;
-  color: var(--main-color);
-}
-.todo__title:after {
-  transition: all 0.3s ease-in;
-  border-top: 2px solid var(--main-color);
-  position: absolute;
-  content: "";
-  right: 0;
-  top: calc(50% + 1px);
-  left: 0;
-  width: 0%;
-}
-.todo__title.active {
-  color: rgb(93, 93, 93);
-}
-.todo__title.active:after {
-  width: 100%;
-  border-color: rgb(93, 93, 93);
-}
-
-.todo__pin, .todo__remove {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  border: none;
-  background-color: transparent;
-  padding: 0;
-}
-
-.todo__pin {
-  margin-right: 5%;
-  stroke: var(--main-color);
-  stroke-width: 2;
-  fill: transparent;
-  transition: 0.3s all ease-in;
-  opacity: 0;
-}
-.todo__pin:hover {
-  opacity: 0.6 !important;
-}
-.todo__pin.active {
-  fill: var(--main-color);
-  opacity: 0.4;
-}
-
-.todo__remove {
-  opacity: 0;
-  fill: var(--main-color);
-}
-.todo__remove:hover {
-  fill: red;
-  opacity: 0.4 !important;
+  opacity: 1;
 }
 
 @media screen and (max-width: 600px) {
-  .todo__pin {
-    opacity: 0.4;
-  }
-  .todo__remove {
-    opacity: 0.4;
-    fill: red;
-  }
-  .todo__item:hover .todo__remove,
-  .todo__item:hover .todo__pin:not(.active) {
-    opacity: 0.4;
+  .todo__pin, .todo__remove {
+    opacity: 1 !important;
   }
 }

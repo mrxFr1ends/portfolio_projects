@@ -19,35 +19,47 @@ import { ITodo } from "./types/todo";
 //info: ПРАВКИ ПО СТИЛЮ
 //todo: у меня почему то на телефоне нет зеленых иконок у выполненых todo
 
+import { Container, CssBaseline, ThemeProvider } from "@mui/material";
+import CustomThemeProvider from "./providers/CustomThemeProvider";
+
 function App() {
-  const [openModal, setOpenModal] = useState<boolean>(false);
-  const [selectedTodo, setSelectedTodo] = useState<ITodo | null>(null);
-  const { todos } = useTypedSelector(state => state.todo);
-  const { loadTodos } = useActions();
+    const [openModal, setOpenModal] = useState<boolean>(false);
+    const [selectedTodo, setSelectedTodo] = useState<ITodo | null>(null);
+    const { todos } = useTypedSelector(state => state.todo);
+    const { loadTodos } = useActions();
 
-  useEffect(() => {
-    loadTodos();
-  }, []);
+    useEffect(() => {
+        loadTodos();
+    }, []);
 
-  const selectTodo = useCallback((item: ITodo) => {
-    setSelectedTodo(item);
-    setOpenModal(true);
-  }, []);
+    const selectTodo = useCallback((item: ITodo) => {
+        setSelectedTodo(item);
+        setOpenModal(true);
+    }, []);
 
-  return (
-    <div className="container">
-      <TodoModal
-        openModal={selectedTodo !== null && openModal}
-        setOpenModal={setOpenModal}
-        todo={selectedTodo}
-      />
-      <FilterProvider>
-        <TodoPanel />
-        <TodoList todos={todos} onSelect={selectTodo} />
-      </FilterProvider>
-      <SwapTheme />
-    </div>
-  );
+    return (
+        <CustomThemeProvider>
+            <CssBaseline />
+            <Container
+                className="container"
+                maxWidth="sm"
+                disableGutters={true}
+            >
+                {selectedTodo !== null && 
+                    <TodoModal
+                        openModal={openModal}
+                        setOpenModal={setOpenModal}
+                        todo={selectedTodo}
+                    />
+                }
+                <FilterProvider>
+                    <TodoPanel />
+                    <TodoList todos={todos} onSelect={selectTodo} />
+                </FilterProvider>
+            </Container>
+            <SwapTheme />
+        </CustomThemeProvider>
+    );
 }
 
 export default App;

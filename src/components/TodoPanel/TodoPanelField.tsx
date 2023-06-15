@@ -1,31 +1,32 @@
 import { useState } from "react";
-import TextField from "../generic/TextField";
-import { addTodo } from "../../store/action-creators/todo";
+import { TextField } from "@mui/material";
+import { useActions } from "../../hooks/useActions";
 
-interface TodoPanelFieldProps {
-  addTodo: typeof addTodo;
-}
+const TodoPanelField: React.FC = () => {
+    const [todoTitle, setTodoTitle] = useState("");
+    const { addTodo } = useActions();
 
-const TodoPanelField: React.FC<TodoPanelFieldProps> = ({ addTodo }) => {
-  const [todoTitle, setTodoTitle] = useState("");
+    const handleAddTodo = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter" && todoTitle !== "") {
+            addTodo({ title: todoTitle });
+            setTodoTitle("");
+        }
+    };
 
-  const handleAddTodo = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter" && todoTitle !== "") {
-      addTodo({title: todoTitle});
-      setTodoTitle("");
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setTodoTitle(event.target.value);
     }
-  };
 
-  return (
-    <TextField
-      name="todo"
-      value={todoTitle}
-      title="Todo"
-      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTodoTitle(e.target.value)}
-      onKeyUp={handleAddTodo}
-      className="todo_panel__field"
-    />
-  );
+    return (
+        <TextField
+            value={todoTitle}
+            label="Todo"
+            variant="filled"
+            onChange={handleChange}
+            onKeyUp={handleAddTodo}
+            className="todo_panel__field"
+        />
+    );
 };
 
 export default TodoPanelField;

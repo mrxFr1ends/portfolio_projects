@@ -1,104 +1,28 @@
-import { RefObject, SVGProps } from "react";
+import SvgIcon, {SvgIconProps} from '@mui/material/SvgIcon';
 
-export const CrossIcon = (props: SVGProps<SVGSVGElement>) => {
+export const ShowAllIcon: React.FC<SvgIconProps> = (props: SvgIconProps): JSX.Element => {
   return (
-    <svg {...props} viewBox="0 0 212.982 212.982">
-      <path d="M131.804,106.491l75.936-75.936c6.99-6.99,6.99-18.323,0-25.312
-      c-6.99-6.99-18.322-6.99-25.312,0l-75.937,75.937L30.554,5.242c-6.99-6.99-18.322-6.99-25.312,0c-6.989,6.99-6.989,18.323,0,25.312
-      l75.937,75.936L5.242,182.427c-6.989,6.99-6.989,18.323,0,25.312c6.99,6.99,18.322,6.99,25.312,0l75.937-75.937l75.937,75.937
-      c6.989,6.99,18.322,6.99,25.312,0c6.99-6.99,6.99-18.322,0-25.312L131.804,106.491z"/>
-    </svg>
-  );
-};
-
-export const TaskRemoveIcon = (props: SVGProps<SVGSVGElement>) => {
-  return (
-    <svg {...props} viewBox="0 0 24 24">
-      <path d="M3 20c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2h-2a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1H5c-1.103 0-2 .897-2 2v15zM5 5h2v2h10V5h2v15H5V5z"/>
-      <path d="M14.292 10.295 12 12.587l-2.292-2.292-1.414 1.414 2.292 2.292-2.292 2.292 1.414 1.414L12 15.415l2.292 2.292 1.414-1.414-2.292-2.292 2.292-2.292z"/>
-    </svg>
-  );
-};
-
-// Старая иконка, на всякий случай
-export const TaskAddIcon = (props: SVGProps<SVGSVGElement>) => {
-  return (
-    <svg {...props} viewBox="0 0 24 24">
-      <path d="M3 20c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2h-2a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1H5c-1.103 0-2 .897-2 2v15zM5 5h2v2h10V5h2v15H5V5z"/>
-      <path transform="rotate(45), translate(6, -13)" d="M14.292 10.295 12 12.587l-2.292-2.292-1.414 1.414 2.292 2.292-2.292 2.292 1.414 1.414L12 15.415l2.292 2.292 1.414-1.414-2.292-2.292 2.292-2.292z"/>
-    </svg>
-  );
-};
-
-export const TaskCompleteIcon = (props: SVGProps<SVGSVGElement>) => {
-  return (
-    <svg {...props} viewBox="0 0 24 24">
-      <path d="M5 22h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2h-2a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1H5c-1.103 0-2 .897-2 2v15c0 1.103.897 2 2 2zM5 5h2v2h10V5h2v15H5V5z"/>
-      <path d="m11 13.586-1.793-1.793-1.414 1.414L11 16.414l5.207-5.207-1.414-1.414z"/>
-    </svg>
-  );
-};
-
-export const MoonIcon = (props: SVGProps<SVGSVGElement>) => {
-  return (
-    <svg {...props} viewBox="0 0 48 48">
-      <path d="M18.2,11.2a22.6,22.6,0,0,0-1,6.9c.3,8.8,6.7,16.8,15,19.7A14.5,14.5,0,0,1,26.3,39H24.6a15,15,0,0,1-6.4-27.7m6-6.2h-.1a19.2,19.2,0,0,0-17,21.1A19.2,19.2,0,0,0,24.2,42.9h2.1a19.2,19.2,0,0,0,14.4-6.4A.9.9,0,0,0,40,35H38.1c-8.8-.5-16.6-8.4-16.9-17.1A17.4,17.4,0,0,1,25,6.6,1,1,0,0,0,24.2,5Z"/>
-    </svg>
-  );
-};
-
-export const SunIcon = (props: SVGProps<SVGSVGElement>) => {
-  return (
-    <svg {...props} viewBox="0 0 16 16">
-      <path d="M8 .25a.75.75 0 01.75.75v1.273a.75.75 0 01-1.5 0V1A.75.75 0 018 .25z"/>
-      <path d="M4 8a4 4 0 118 0 4 4 0 01-8 0zm4-2.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z" />
-      <path d="M8.75 13.727a.75.75 0 00-1.5 0V15a.75.75 0 001.5 0v-1.273zM2.519 2.518a.75.75 0 011.06 0l.904.904a.75.75 0 01-1.06 1.06l-.904-.903a.75.75 0 010-1.06zM12.578 11.517a.75.75 0 00-1.061 1.06l.904.904a.75.75 0 101.06-1.06l-.903-.904zM.25 8A.75.75 0 011 7.25h1.273a.75.75 0 010 1.5H1A.75.75 0 01.25 8zM13.727 7.25a.75.75 0 000 1.5H15a.75.75 0 000-1.5h-1.273zM4.483 11.517a.75.75 0 010 1.06l-.904.904a.75.75 0 01-1.06-1.06l.903-.904a.75.75 0 011.061 0zM13.481 3.58a.75.75 0 00-1.06-1.062l-.904.904a.75.75 0 101.06 1.06l.904-.903z"/>
-    </svg>
-  );
-};
-
-export const PinIcon = (props: SVGProps<SVGSVGElement>) => {
-  return (
-    <svg {...props} viewBox="0 0 24 24" strokeWidth={2}>
-      <path d="M22.29,12.72l-2.06-2.06l-5.49,5.49l-0.08,0.08c-0.01,1.72-0.67,3.43-1.99,4.74l-4.11-4.11l-6.86,6.86l-1.41-1.41
-          l6.86-6.86l-4.11-4.11c1.31-1.31,3.02-1.97,4.74-1.99l0.08-0.08l5.49-5.49l-2.06-2.06l1.41-1.41L23.71,11.3L22.29,12.72z"/>
-    </svg>
-  );
-};
-
-export const BurgerIcon = (props: SVGProps<SVGSVGElement>) => {
-  return (
-    <svg {...props} viewBox="0 0 24 24">
-      <rect x="0" y="0" width="24" height="3"/>
-      <rect x="0" y="10.5" width="24" height="3"/>
-      <rect x="0" y="21" width="24" height="3"/>
-    </svg>
-  );
-};
-
-export const ShowAllIcon = (props: SVGProps<SVGSVGElement>) => {
-  return (
-    <svg {...props} viewBox="0 0 48 48">
+    <SvgIcon {...props} viewBox="0 0 48 48">
       <path d="M24,38c12,0,20-14,20-14s-8-14-20-14S4,24,4,24S12,38,24,38z M24,14c7.072,0,12.741,6.584,15.201,9.992 C36.728,27.396,31.024,34,24,34c-7.072,0-12.741-6.584-15.201-9.992C11.272,20.604,16.976,14,24,14z"/>
       <path d="M24,32c4.418,0,8-3.582,8-8s-3.582-8-8-8s-8,3.582-8,8S19.582,32,24,32z M24,20c2.206,0,4,1.794,4,4c0,2.206-1.794,4-4,4 s-4-1.794-4-4C20,21.794,21.794,20,24,20z"/>
-    </svg>
+    </SvgIcon>
   );
-};
+}
 
-export const ShowCompleteIcon = (props: SVGProps<SVGSVGElement>) => {
+export const ShowCompleteIcon: React.FC<SvgIconProps> = (props: SvgIconProps): JSX.Element => {
   return (
-    <svg {...props} viewBox="0 0 48 48">
+    <SvgIcon {...props} viewBox="0 0 48 48">
       <path d="M24,38c12,0,20-14,20-14s-8-14-20-14S4,24,4,24S12,38,24,38z M24,14c7.072,0,12.741,6.584,15.201,9.992 C36.728,27.396,31.024,34,24,34c-7.072,0-12.741-6.584-15.201-9.992C11.272,20.604,16.976,14,24,14z"/>
       <path transform="translate(0, -2) scale(2)" d="m11 13.586-1.793-1.793-1.414 1.414L11 16.414l5.207-5.207-1.414-1.414z"/>
-    </svg>
+    </SvgIcon>
   );
-};
+}
 
-export const ShowIncompleteIcon = (props: SVGProps<SVGSVGElement>) => {
+export const ShowIncompleteIcon: React.FC<SvgIconProps> = (props: SvgIconProps): JSX.Element => {
   return (
-    <svg {...props} viewBox="0 0 48 48">
+    <SvgIcon {...props} viewBox="0 0 48 48">
       <path d="M24,38c12,0,20-14,20-14s-8-14-20-14S4,24,4,24S12,38,24,38z M24,14c7.072,0,12.741,6.584,15.201,9.992 C36.728,27.396,31.024,34,24,34c-7.072,0-12.741-6.584-15.201-9.992C11.272,20.604,16.976,14,24,14z"/>
       <path transform="translate(0, -4) scale(2)" d="M14.292 10.295 12 12.587l-2.292-2.292-1.414 1.414 2.292 2.292-2.292 2.292 1.414 1.414L12 15.415l2.292 2.292 1.414-1.414-2.292-2.292 2.292-2.292z"/>
-    </svg>
+    </SvgIcon>
   );
-};
+}

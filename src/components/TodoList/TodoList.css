@@ -4,6 +4,9 @@
   overflow-y: overlay;
   overflow-x: hidden;
   height: 40vh;
+  transition: 0.3s background-color ease-in;
+  background-color: var(--todo_list-background-color);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.16));
 }
 
 .todo_list::-webkit-scrollbar {
@@ -13,8 +16,8 @@
   background: transparent;
 }
 .todo_list::-webkit-scrollbar-thumb {
+  transition: 0.3s all ease-in;
   background-color: var(--scrollbar-background-color);
-  border-radius: 20px;
 }
 .todo_list::-webkit-scrollbar-thumb:hover {
   background-color: var(--scrollbar-background-color-hover);
@@ -42,5 +45,6 @@
 @media screen and (max-width: 600px) {
   .todo_list {
     height: calc(100% - 58px);
+    border-radius: 0;
   }
 }

@@ -2,9 +2,7 @@ import { useState } from "react";
 import { useActions } from "../../hooks/useActions";
 import { ITodo } from "../../types/todo";
 import { deepEqual } from "../../utils";
-import Button from "../generic/Button";
-import CheckBox from "../generic/CheckBox";
-import TextField from "../generic/TextField";
+import { TextField, Checkbox, Button, Stack, FormGroup, FormControlLabel } from "@mui/material";
 import "./TodoForm.css";
 
 interface TodoFormProps {
@@ -28,40 +26,58 @@ const TodoForm: React.FC<TodoFormProps> = ({ item, onSubmit }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="todo_form">
-            <TextField
-                name="title"
-                title="Заголовок"
-                className="todo_form__field"
-                value={todo.title}
-                onChange={handleChange}
-            />
-            <TextField
-                name="detail"
-                title="Детали"
-                className="todo_form__field"
-                value={todo.detail}
-                onChange={handleChange}
-            />
-            <div className="todo_form__row">
-                <CheckBox
-                    className="todo_form__checkbox"
-                    name="completed"
-                    id="completed"
-                    value="Выполнено"
-                    checked={todo.completed}
+        <form 
+            onSubmit={handleSubmit} 
+            className="todo_form"
+        >
+            <Stack spacing={2}>
+                <TextField
+                    name="title"
+                    label="Заголовок"
+                    className="todo_form__field"
+                    value={todo.title}
                     onChange={handleChange}
                 />
-                <CheckBox
-                    className="todo_form__checkbox"
-                    name="pinned"
-                    id="pinned"
-                    value="Закреплено"
-                    checked={todo.pinned}
+                <TextField
+                    multiline
+                    minRows={2}
+                    maxRows={5}
+                    name="detail"
+                    label="Детали"
+                    className="todo_form__field"
+                    value={todo.detail}
                     onChange={handleChange}
                 />
-            </div>
-            <Button className="todo_form__save" value="Сохранить изменения" type="submit" />
+                <FormGroup className="todo_form__row">
+                    <Stack direction="row" sx={{justifyContent: "space-around"}}>
+                        <FormControlLabel label="Выполнено"
+                        sx={{margin: "0 20% 0 0"}} control={
+                            <Checkbox
+                                className="todo_form__checkbox"
+                                name="completed"
+                                checked={todo.completed}
+                                onChange={handleChange}
+                            />
+                        }/>
+                        <FormControlLabel label="Закреплено" sx={{margin: 0}} control={
+                            <Checkbox
+                                className="todo_form__checkbox"
+                                name="pinned"
+                                checked={todo.pinned}
+                                onChange={handleChange}
+                            />
+                        }/>
+                    </Stack>
+                </FormGroup>
+                <Button 
+                    className="todo_form__save" 
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                >
+                    Сохранить изменения
+                </Button>
+            </Stack>
         </form>
     );
 };

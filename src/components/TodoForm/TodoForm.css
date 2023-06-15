@@ -1,23 +1,5 @@
-.todo_form > *:not(:last-child) {
-  margin-bottom: 20px;
-}
-
-.todo_form__field {
-  color: var(--main-color) !important;
-  border-color: var(--panel-border-color) !important;
-  transition: 0.3s border-color ease-in !important;
-}
-.todo_form__field:focus {
-  background-color: var(--panel-field-backgrond-color-focus) !important;
-  border-color: #03a9f4 !important;
-}
-
-.todo_form__checkbox {
-  border-color: var(--todo-checkbox-border-color);
-}
-.todo_form__checkbox:hover:not(.todo_form__checkbox:checked),
-.todo_form__checkbox:focus:not(.todo_form__checkbox:checked) {
-  border-color: var(--todo-checkbox-border-color-hover);
+.todo_form {
+  width: auto !important;
 }
 
 .todo_form__row {
@@ -28,16 +10,9 @@
 }
 
 .todo_form__save {
-  width: auto;
-  height: 100%;
-  color: var(--main-color);
-  border-radius: 5px;
-  background-color: transparent;
-  border: 1px solid var(--main-color);
-  padding: 8px 15px;
-  margin: 0 auto;
+  padding: 10px 0 !important;
 }
 
-.todo_form__save:hover {
-  background-color: var(--main-color-hover);
+.todo_form__checkbox {
+  padding-left: 0;
 }

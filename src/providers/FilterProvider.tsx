@@ -20,7 +20,7 @@ export default function FilterProvider({
         return todos;
     };
 
-    const providerValue = {
+    const providerValue: IFilterContext = {
         filter,
         setFilter,
         filterTodos,
